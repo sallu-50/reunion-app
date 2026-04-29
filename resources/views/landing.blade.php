@@ -14,7 +14,8 @@
             --text-dark: #1e293b;
         }
 
-        body, html {
+        body,
+        html {
             margin: 0;
             padding: 0;
             font-family: 'Outfit', sans-serif;
@@ -99,7 +100,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
         }
 
         .hero-content {
@@ -108,7 +109,8 @@
             max-width: 800px;
             padding: 0 20px;
             animation: fadeInUp 1s ease-out;
-            margin-top: 60px; /* Offset for navbar */
+            margin-top: 60px;
+            /* Offset for navbar */
         }
 
         @keyframes fadeInUp {
@@ -116,6 +118,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -127,7 +130,7 @@
             font-weight: 800;
             margin-bottom: 20px;
             line-height: 1.1;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero p {
@@ -177,20 +180,25 @@
                 flex-direction: column;
                 gap: 15px;
             }
+
             .nav-stats {
                 font-size: 0.8rem;
                 gap: 10px;
             }
+
             .nav-contact {
                 font-size: 0.75rem;
                 padding: 6px 15px;
             }
+
             .hero h1 {
                 font-size: 2.8rem;
             }
+
             .hero p {
                 font-size: 1.1rem;
             }
+
             .cta-button {
                 padding: 16px 35px;
                 font-size: 1.2rem;
@@ -215,8 +223,9 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Grand Alumni Reunion</h1>
-            <p>Reconnect with old friends, relive cherished memories, and celebrate the journey together. We can't wait to see you back on campus!</p>
-            <a href="{{ url('/apply') }}" class="cta-button">REGISTRATION KORUN</a>
+            <p>Reconnect with old friends, relive cherished memories, and celebrate the journey together. We can't wait
+                to see you back on campus!</p>
+            <a href="{{ url('/apply') }}" class="cta-button">REGISTRATION NOW</a>
         </div>
     </section>
 
