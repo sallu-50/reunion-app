@@ -32,50 +32,52 @@
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid #e2e8f0;
             box-sizing: border-box;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .nav-stats {
             display: flex;
             gap: 20px;
-            color: var(--text-light);
+            color: var(--text-dark);
             font-weight: 600;
             font-size: 0.95rem;
         }
 
         .stat-badge {
-            background: rgba(255, 255, 255, 0.2);
+            background: #f1f5f9;
             padding: 5px 12px;
             border-radius: 99px;
             display: flex;
             align-items: center;
             gap: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #e2e8f0;
+            color: #475569;
         }
 
         .stat-badge span {
-            color: #fbbf24; /* Amber/Yellow for emphasis */
+            color: var(--primary);
             font-weight: 800;
         }
 
         .nav-contact {
             text-decoration: none;
-            color: var(--text-light);
+            color: var(--text-dark);
             font-weight: 700;
             font-size: 0.9rem;
             text-transform: uppercase;
             padding: 8px 20px;
-            border: 2px solid var(--text-light);
+            border: 2px solid var(--text-dark);
             border-radius: 50px;
             transition: all 0.3s;
         }
 
         .nav-contact:hover {
-            background: var(--text-light);
-            color: var(--primary);
+            background: var(--text-dark);
+            color: white;
         }
 
         .hero {
