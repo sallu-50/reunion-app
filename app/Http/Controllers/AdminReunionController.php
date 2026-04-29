@@ -10,7 +10,14 @@ class AdminReunionController extends Controller
     public function index()
     {
         $applications = ReunionApplication::orderBy('created_at', 'desc')->get();
-        return view('admin.applications.index', compact('applications'));
+        $totalApplications = ReunionApplication::count();
+        $approvedApplications = ReunionApplication::where('status', 'approved')->count();
+        
+        return view('admin.applications.index', compact(
+            'applications', 
+            'totalApplications', 
+            'approvedApplications'
+        ));
     }
 
     public function approve(ReunionApplication $application)

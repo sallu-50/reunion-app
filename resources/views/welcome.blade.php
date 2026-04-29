@@ -44,65 +44,34 @@
             overflow: hidden;
         }
 
-        .progress-container {
-            margin-bottom: 40px;
-        }
-
-        .progress-bar {
-            height: 6px;
-            background: #e5e7eb;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--primary);
-            width: 25%;
-            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .steps-label {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
         .step-title {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--text-main);
             margin-bottom: 8px;
+            text-align: center;
         }
 
         .step-subtitle {
             font-size: 1rem;
             color: var(--text-muted);
             margin-bottom: 30px;
+            text-align: center;
         }
 
         .form-section {
-            margin-bottom: 40px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 20px;
             animation: slideIn 0.4s ease-out;
         }
 
-        .form-section:last-of-type {
-            border-bottom: none;
-        }
+        @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateX(20px);
+                transform: translateY(10px);
             }
-
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
@@ -119,10 +88,8 @@
         }
 
         input[type="text"],
-        input[type="email"],
         input[type="number"],
         input[type="tel"],
-        textarea,
         select {
             width: 100%;
             padding: 12px 16px;
@@ -136,7 +103,6 @@
         }
 
         input:focus,
-        textarea:focus,
         select:focus {
             outline: none;
             border-color: var(--primary);
@@ -179,27 +145,10 @@
             border-color: var(--primary);
         }
 
-        .file-input-wrapper {
-            position: relative;
+        .btn-submit {
+            background: var(--primary);
+            color: white;
             width: 100%;
-        }
-
-        .file-input-wrapper input {
-            padding: 10px;
-            background: #f9fafb;
-            border: 2px dashed #d1d5db;
-            border-radius: 12px;
-            cursor: pointer;
-        }
-
-        .navigation-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            gap: 15px;
-        }
-
-        button {
             padding: 14px 28px;
             border-radius: 14px;
             font-size: 1rem;
@@ -207,30 +156,13 @@
             cursor: pointer;
             transition: all 0.3s;
             border: none;
+            margin-top: 20px;
         }
 
-        .btn-next,
-        .btn-submit {
-            background: var(--primary);
-            color: white;
-            flex: 2;
-        }
-
-        .btn-next:hover,
         .btn-submit:hover {
             background: var(--primary-hover);
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-prev {
-            background: #f3f4f6;
-            color: var(--text-main);
-            flex: 1;
-        }
-
-        .btn-prev:hover {
-            background: #e5e7eb;
         }
 
         .alert {
@@ -273,7 +205,8 @@
 
 <body>
     <div class="form-card">
-
+        <h2 class="step-title">Reunion Registration</h2>
+        <p class="step-subtitle">Please fill in the details below to register.</p>
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -291,23 +224,49 @@
             </div>
         @endif
 
-        <form action="{{ route('apply.submit') }}" method="POST" enctype="multipart/form-data" id="multiStepForm">
+        <form action="{{ route('apply.submit') }}" method="POST" id="registrationForm">
             @csrf
 
-            <div class="form-section active">
-                <h2 class="step-title">Personal Details</h2>
-                <p class="step-subtitle">Let's start with some basic information about you.</p>
-
-
-
+            <div class="form-section">
+                {{-- 1. FULL NAME --}}
                 <div class="input-group">
-                    <label for="name">Full Name (English)</label>
+                    <label for="name">FULL NAME</label>
                     <input type="text" id="name" name="name" value="{{ old('name') }}"
                         placeholder="Enter your full name" required>
                 </div>
 
+                {{-- 2. PHONE NUMBER --}}
                 <div class="input-group">
-                    <label>Member Type</label>
+                    <label for="phone">PHONE NUMBER</label>
+                    <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
+                        placeholder="01XXXXXXXXX" required>
+                </div>
+
+                {{-- 3. GENDER --}}
+                <div class="input-group">
+                    <label>GENDER</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="gender_male" name="gender" value="male"
+                                {{ old('gender') == 'male' ? 'checked' : '' }} required>
+                            <label for="gender_male">Male</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="gender_female" name="gender" value="female"
+                                {{ old('gender') == 'female' ? 'checked' : '' }}>
+                            <label for="gender_female">Female</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="gender_other" name="gender" value="other"
+                                {{ old('gender') == 'other' ? 'checked' : '' }}>
+                            <label for="gender_other">Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- 4. MEMBER TYPE --}}
+                <div class="input-group">
+                    <label>MEMBER TYPE</label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="type_ex" name="member_type" value="ex_student"
@@ -327,120 +286,24 @@
                     </div>
                 </div>
 
+                {{-- 5. PASSING YEAR --}}
                 <div class="input-group">
-                    <label for="graduation_year">Passing Year</label>
+                    <label for="graduation_year">PASSING YEAR</label>
                     <input type="number" id="graduation_year" name="graduation_year"
                         value="{{ old('graduation_year') }}" min="1900" max="{{ date('Y') }}" placeholder="YYYY"
                         required>
                 </div>
 
+                {{-- 6. HOW MANY GUEST --}}
                 <div class="input-group">
-                    <label>Gender</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="gender_male" name="gender" value="male"
-                                {{ old('gender') == 'male' ? 'checked' : '' }} required>
-                            <label for="gender_male">Male</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="gender_female" name="gender" value="female"
-                                {{ old('gender') == 'female' ? 'checked' : '' }}>
-                            <label for="gender_female">Female</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="gender_other" name="gender" value="other"
-                                {{ old('gender') == 'other' ? 'checked' : '' }}>
-                            <label for="gender_other">Other</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-section">
-                <h2 class="step-title">Contact & Media</h2>
-                <p class="step-subtitle">How can we reach you and identify you?</p>
-
-                <div class="input-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
-                        placeholder="+8801234567890">
-                </div>
-
-                <div class="input-group">
-                    <label for="present_address">Present Address</label>
-                    <textarea id="present_address" name="present_address" placeholder="Where do you live now?">{{ old('present_address') }}</textarea>
-                </div>
-
-                <div class="input-group">
-                    <label for="permanent_address">Permanent Address</label>
-                    <textarea id="permanent_address" name="permanent_address" placeholder="Your home address">{{ old('permanent_address') }}</textarea>
-                </div>
-
-                <div class="input-group">
-                    <label for="photo">Upload Your Photo</label>
-                    <div class="file-input-wrapper">
-                        <input type="file" id="photo" name="photo" accept="image/*">
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-section">
-                <h2 class="step-title">Event Participation</h2>
-                <p class="step-subtitle">Tell us about your plans for the reunion.</p>
-
-                <div class="input-group">
-                    <label for="number_of_guests">How many guests will attend with you?</label>
+                    <label for="number_of_guests">HOW MANY GUEST</label>
                     <input type="number" id="number_of_guests" name="number_of_guests"
-                        value="{{ old('number_of_guests', 0) }}" min="0">
+                        value="{{ old('number_of_guests', 0) }}" min="0" required>
                 </div>
 
+                {{-- 7. PAYMENT GETWAY --}}
                 <div class="input-group">
-                    <label>Do you want to perform in the cultural segment?</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="perform_yes" name="wants_to_perform" value="1"
-                                {{ old('wants_to_perform') == '1' ? 'checked' : '' }}>
-                            <label for="perform_yes">Yes, I'd love to!</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="perform_no" name="wants_to_perform" value="0"
-                                {{ old('wants_to_perform', '0') == '0' ? 'checked' : '' }}>
-                            <label for="perform_no">No, thank you.</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="input-group" id="performanceTypeGroup" style="display: none;">
-                    <label for="performance_type">Performance Type (Song, Dance, Speech, etc.)</label>
-                    <input type="text" id="performance_type" name="performance_type"
-                        value="{{ old('performance_type') }}" placeholder="What will you perform?">
-                </div>
-
-                <div class="input-group">
-                    <label for="message_to_teachers">Message to Teachers</label>
-                    <textarea id="message_to_teachers" name="message_to_teachers" placeholder="Any words for our beloved teachers?">{{ old('message_to_teachers') }}</textarea>
-                </div>
-
-                <div class="input-group">
-                    <label for="video">Any video for our teachers? (Optional)</label>
-                    <div class="file-input-wrapper">
-                        <input type="file" id="video" name="video" accept="video/*">
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-section">
-                <h2 class="step-title">Final Step: Contribution</h2>
-                <p class="step-subtitle">Support our reunion and complete your registration.</p>
-
-                <div class="input-group">
-                    <label for="donation_amount">Donation Amount (BDT)</label>
-                    <input type="number" id="donation_amount" name="donation_amount"
-                        value="{{ old('donation_amount') }}" placeholder="Amount in Taka" required>
-                </div>
-
-                <div class="input-group">
-                    <label>Payment Method</label>
+                    <label>PAYMENT GETWAY</label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="pay_bkash" name="payment_method" value="bKash"
@@ -465,33 +328,26 @@
                         in the reference)</p>
                 </div>
 
+                {{-- 8. DONATION AMOUNT --}}
                 <div class="input-group">
-                    <label for="transaction_number">Transaction ID</label>
+                    <label for="donation_amount">DONATION AMOUNT</label>
+                    <input type="number" id="donation_amount" name="donation_amount"
+                        value="{{ old('donation_amount') }}" placeholder="Amount in BDT" required>
+                </div>
+
+                {{-- 9. TNXID/PHONE NUMBER --}}
+                <div class="input-group">
+                    <label for="transaction_number">TNXID/PHONE NUMBER</label>
                     <input type="text" id="transaction_number" name="transaction_number"
-                        value="{{ old('transaction_number') }}" placeholder="Enter TrxID" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="donation_message">Any message regarding donation?</label>
-                    <textarea id="donation_message" name="donation_message" placeholder="Optional message">{{ old('donation_message') }}</textarea>
-                </div>
-
-                <div class="input-group">
-                    <label for="message">Any Question?</label>
-                    <textarea id="message" name="message" placeholder="Ask us anything">{{ old('message') }}</textarea>
+                        value="{{ old('transaction_number') }}" placeholder="Enter TrxID or Sender Phone" required>
                 </div>
             </div>
 
-            <div class="navigation-buttons">
-                <button type="submit" class="btn-submit" id="submitBtn">Complete Registration</button>
-            </div>
+            <button type="submit" class="btn-submit" id="submitBtn">Complete Registration</button>
         </form>
     </div>
 
     <script>
-        const performYes = document.getElementById('perform_yes');
-        const performNo = document.getElementById('perform_no');
-        const performanceTypeGroup = document.getElementById('performanceTypeGroup');
         const payBkash = document.getElementById('pay_bkash');
         const payNagad = document.getElementById('pay_nagad');
         const paymentInfo = document.getElementById('payment_info');
@@ -501,15 +357,6 @@
             'bKash': '017XXXXXXXX (Personal)',
             'Nagad': '019XXXXXXXX (Personal)'
         };
-
-        // Show/Hide Performance Type
-        function togglePerformanceType() {
-            if (performYes.checked) {
-                performanceTypeGroup.style.display = 'block';
-            } else {
-                performanceTypeGroup.style.display = 'none';
-            }
-        }
 
         function updatePaymentNumber() {
             const selected = document.querySelector('input[name="payment_method"]:checked');
@@ -521,13 +368,10 @@
             }
         }
 
-        performYes.addEventListener('change', togglePerformanceType);
-        performNo.addEventListener('change', togglePerformanceType);
         payBkash.addEventListener('change', updatePaymentNumber);
         payNagad.addEventListener('change', updatePaymentNumber);
 
         // Initialize
-        togglePerformanceType();
         updatePaymentNumber();
     </script>
 </body>

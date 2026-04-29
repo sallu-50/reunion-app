@@ -7,7 +7,9 @@ use App\Http\Controllers\AdminReunionController;
 
 // Landing Page
 Route::get('/', function () {
-    return view('landing');
+    $totalApplied = ReunionApplication::count();
+    $totalApproved = ReunionApplication::where('status', 'approved')->count();
+    return view('landing', compact('totalApplied', 'totalApproved'));
 });
 
 // Reunion Application Form
@@ -18,32 +20,15 @@ Route::get('/apply', function () {
 Route::post('/apply', function (Request $request) {
     $validatedData = $request->validate([
         'name' => 'required|string|max:255',
-        'phone' => 'nullable|string|max:20',
+        'phone' => 'required|string|max:20',
+        'gender' => 'required|in:male,female,other',
         'member_type' => 'required|in:guest,ex_student,running_student',
         'graduation_year' => 'required|integer|min:1900|max:' . date('Y'),
-        'gender' => 'required|in:male,female,other',
-        'present_address' => 'required|string',
-        'permanent_address' => 'required|string',
-        'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'video' => 'nullable|mimes:mp4,mov,ogg,qt|max:20000',
         'number_of_guests' => 'required|integer|min:0',
-        'wants_to_perform' => 'required|boolean',
-        'performance_type' => 'nullable|string|max:255',
-        'message_to_teachers' => 'nullable|string',
-        'donation_amount' => 'required|integer|min:0',
         'payment_method' => 'required|in:bKash,Nagad',
+        'donation_amount' => 'required|integer|min:0',
         'transaction_number' => 'required|string|max:255',
-        'donation_message' => 'nullable|string',
-        'message' => 'nullable|string', // Used for "Any Question"
     ]);
-
-    if ($request->hasFile('photo')) {
-        $validatedData['photo'] = $request->file('photo')->store('photos', 'public');
-    }
-
-    if ($request->hasFile('video')) {
-        $validatedData['video'] = $request->file('video')->store('videos', 'public');
-    }
 
     ReunionApplication::create($validatedData);
 

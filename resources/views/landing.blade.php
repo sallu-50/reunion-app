@@ -22,6 +22,62 @@
             background-color: #f8fafc;
         }
 
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-sizing: border-box;
+        }
+
+        .nav-stats {
+            display: flex;
+            gap: 20px;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 99px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-badge span {
+            color: #fbbf24; /* Amber/Yellow for emphasis */
+            font-weight: 800;
+        }
+
+        .nav-contact {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border: 2px solid var(--text-light);
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .nav-contact:hover {
+            background: var(--text-light);
+            color: var(--primary);
+        }
+
         .hero {
             position: relative;
             height: 100vh;
@@ -50,6 +106,7 @@
             max-width: 800px;
             padding: 0 20px;
             animation: fadeInUp 1s ease-out;
+            margin-top: 60px; /* Offset for navbar */
         }
 
         @keyframes fadeInUp {
@@ -113,6 +170,19 @@
         }
 
         @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-stats {
+                font-size: 0.8rem;
+                gap: 10px;
+            }
+            .nav-contact {
+                font-size: 0.75rem;
+                padding: 6px 15px;
+            }
             .hero h1 {
                 font-size: 2.8rem;
             }
@@ -128,6 +198,18 @@
 </head>
 
 <body>
+    <nav class="navbar">
+        <div class="nav-stats">
+            <div class="stat-badge">
+                Applied: <span>{{ $totalApplied }}</span>
+            </div>
+            <div class="stat-badge">
+                Approved: <span>{{ $totalApproved }}</span>
+            </div>
+        </div>
+        <a href="tel:+880123456789" class="nav-contact">+880 123 456 789</a>
+    </nav>
+
     <section class="hero">
         <div class="hero-content">
             <h1>Grand Alumni Reunion</h1>
@@ -136,7 +218,7 @@
         </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <p>Questions? Contact us at: <strong>alumni@reunion.com</strong> or call <strong>+880 123 456 789</strong></p>
         <p>&copy; {{ date('Y') }} Grand Reunion. All rights reserved.</p>
     </footer>
