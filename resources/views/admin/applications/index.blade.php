@@ -317,7 +317,6 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Photo</th>
                             <th>Name</th>
                             <th>Type</th>
                             <th>Year</th>
@@ -332,13 +331,6 @@
                         @forelse ($applications as $app)
                             <tr>
                                 <td>#{{ $app->id }}</td>
-                                <td>
-                                    @if($app->photo)
-                                        <img src="{{ asset('storage/' . $app->photo) }}" class="photo-thumb" alt="Photo">
-                                    @else
-                                        <div class="photo-thumb" style="background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-size: 10px;">No Image</div>
-                                    @endif
-                                </td>
                                 <td>
                                     <div style="font-weight: 600;">{{ $app->name }}</div>
                                 </td>
