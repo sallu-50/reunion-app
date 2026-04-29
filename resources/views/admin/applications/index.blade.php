@@ -438,6 +438,13 @@
                                                 <button type="submit" class="btn btn-reject">Reject</button>
                                             </form>
                                         @endif
+                                        @if(auth()->user()->role === 'super_admin')
+                                            <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" style="margin:0;" onsubmit="return confirm('Are you sure you want to delete this application?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-reject" style="background: #ef4444;">Delete</button>
+                                            </form>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>

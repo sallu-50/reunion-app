@@ -46,4 +46,13 @@ class AdminReunionController extends Controller
         $application->save();
         return redirect()->route('admin.applications.index')->with('success', 'Application rejected successfully!');
     }
+
+    public function destroy(ReunionApplication $application)
+    {
+        if (auth()->user()->role !== 'super_admin') {
+            abort(403);
+        }
+        $application->delete();
+        return redirect()->route('admin.applications.index')->with('success', 'Application deleted successfully!');
+    }
 }

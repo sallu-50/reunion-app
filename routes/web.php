@@ -48,6 +48,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::post('applications/{application}/reject', [AdminReunionController::class, 'reject'])
         ->middleware('role:super_admin,moderator')
         ->name('applications.reject');
+    
+    Route::delete('applications/{application}', [AdminReunionController::class, 'destroy'])
+        ->middleware('role:super_admin')
+        ->name('applications.destroy');
 });
 
 Auth::routes();
