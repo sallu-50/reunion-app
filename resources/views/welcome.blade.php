@@ -256,11 +256,11 @@
                                 {{ old('gender') == 'female' ? 'checked' : '' }}>
                             <label for="gender_female">Female</label>
                         </div>
-                        <div class="radio-option">
+                        <!-- <div class="radio-option">
                             <input type="radio" id="gender_other" name="gender" value="other"
                                 {{ old('gender') == 'other' ? 'checked' : '' }}>
                             <label for="gender_other">Other</label>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
