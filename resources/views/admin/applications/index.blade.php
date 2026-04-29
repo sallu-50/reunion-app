@@ -102,6 +102,59 @@
             background: #fecaca;
         }
 
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: var(--card);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .filter-group select {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            outline: none;
+            font-family: inherit;
+            min-width: 150px;
+        }
+
+        .btn-filter {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-reset {
+            background: #f1f5f9;
+            color: #64748b;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
         .card {
             background: var(--card);
             border-radius: 16px;
@@ -305,6 +358,31 @@
             </div>
         </div>
 
+        <form action="{{ route('admin.applications.index') }}" method="GET" class="filters">
+            <div class="filter-group">
+                <label for="year">Passing Year:</label>
+                <select name="year" id="year">
+                    <option value="">All Years</option>
+                    @foreach($years as $year)
+                        <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>{{ $year }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="status">Status:</label>
+                <select name="status" id="status">
+                    <option value="">All Status</option>
+                    <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Approved</option>
+                    <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-filter">Filter</button>
+            @if(request()->has('year') || request()->has('status'))
+                <a href="{{ route('admin.applications.index') }}" class="btn-reset">Reset</a>
+            @endif
+        </form>
+
         @if (session('success'))
             <div style="background: var(--success); color: white; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
                 {{ session('success') }}
@@ -318,6 +396,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Phone</th>
                             <th>Type</th>
                             <th>Year</th>
                             <th>Guests</th>
@@ -334,6 +413,7 @@
                                 <td>
                                     <div style="font-weight: 600;">{{ $app->name }}</div>
                                 </td>
+                                <td>{{ $app->phone }}</td>
                                 <td>{{ ucfirst(str_replace('_', ' ', $app->member_type)) }}</td>
                                 <td>{{ $app->graduation_year }}</td>
                                 <td>{{ $app->number_of_guests }}</td>

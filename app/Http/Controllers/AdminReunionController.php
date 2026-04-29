@@ -7,16 +7,29 @@ use Illuminate\Http\Request;
 
 class AdminReunionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $applications = ReunionApplication::orderBy('created_at', 'desc')->get();
+        $query = ReunionApplication::query();
+
+        if ($request->filled('year')) {
+            $query->where('graduation_year', $request->year);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $applications = $query->orderBy('created_at', 'desc')->get();
         $totalApplications = ReunionApplication::count();
         $approvedApplications = ReunionApplication::where('status', 'approved')->count();
         
+        $years = ReunionApplication::select('graduation_year')->distinct()->orderBy('graduation_year', 'desc')->pluck('graduation_year');
+
         return view('admin.applications.index', compact(
             'applications', 
             'totalApplications', 
-            'approvedApplications'
+            'approvedApplications',
+            'years'
         ));
     }
 
