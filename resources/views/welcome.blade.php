@@ -289,9 +289,14 @@
                 {{-- 5. PASSING YEAR --}}
                 <div class="input-group">
                     <label for="graduation_year">PASSING YEAR</label>
-                    <input type="number" id="graduation_year" name="graduation_year"
-                        value="{{ old('graduation_year') }}" min="1900" max="{{ date('Y') }}" placeholder="YYYY"
-                        required>
+                    <select id="graduation_year" name="graduation_year" required>
+                        <option value="" disabled {{ old('graduation_year') ? '' : 'selected' }}>Select Year</option>
+                        @for ($year = 2025; $year >= 1985; $year--)
+                            <option value="{{ $year }}" {{ old('graduation_year') == $year ? 'selected' : '' }}>
+                                {{ $year }}
+                            </option>
+                        @endfor
+                    </select>
                 </div>
 
                 {{-- 6. HOW MANY GUEST --}}
