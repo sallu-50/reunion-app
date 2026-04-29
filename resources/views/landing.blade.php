@@ -225,7 +225,7 @@
             <h1>Grand Alumni Reunion</h1>
             <p>Reconnect with old friends, relive cherished memories, and celebrate the journey together. We can't wait
                 to see you back on campus!</p>
-            <a href="{{ url('/apply') }}" class="cta-button">REGISTRATION NOW</a>
+            <a href="{{ url('/apply') }}" class="cta-button">REGISTER NOW</a>
         </div>
     </section>
 
