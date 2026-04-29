@@ -243,7 +243,6 @@
                                 </td>
                                 <td>
                                     <div style="font-weight: 600;">{{ $app->name }}</div>
-                                    <div style="font-size: 0.8rem; color: #64748b;">{{ $app->email }}</div>
                                 </td>
                                 <td>{{ ucfirst(str_replace('_', ' ', $app->member_type)) }}</td>
                                 <td>{{ $app->graduation_year }}</td>
