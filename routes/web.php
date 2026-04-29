@@ -18,7 +18,6 @@ Route::get('/apply', function () {
 Route::post('/apply', function (Request $request) {
     $validatedData = $request->validate([
         'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:reunion_applications',
         'phone' => 'nullable|string|max:20',
         'member_type' => 'required|in:guest,ex_student,running_student',
         'graduation_year' => 'required|integer|min:1900|max:' . date('Y'),

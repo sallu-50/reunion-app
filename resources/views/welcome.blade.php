@@ -86,15 +86,15 @@
         }
 
         .form-section {
-            display: none;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #e5e7eb;
             animation: slideIn 0.4s ease-out;
         }
 
-        .form-section.active {
-            display: block;
+        .form-section:last-of-type {
+            border-bottom: none;
         }
-
-        @keyframes slideIn {
             from {
                 opacity: 0;
                 transform: translateX(20px);
@@ -273,17 +273,7 @@
 
 <body>
     <div class="form-card">
-        <div class="progress-container">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div class="steps-label">
-                <span>Personal</span>
-                <span>Contact</span>
-                <span>Performance</span>
-                <span>Donation</span>
-            </div>
-        </div>
+
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -304,16 +294,11 @@
         <form action="{{ route('apply.submit') }}" method="POST" enctype="multipart/form-data" id="multiStepForm">
             @csrf
 
-            <!-- Step 1: Personal Information -->
-            <div class="form-section active" data-step="1">
+            <div class="form-section active">
                 <h2 class="step-title">Personal Details</h2>
                 <p class="step-subtitle">Let's start with some basic information about you.</p>
 
-                <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" value="{{ old('email') }}"
-                        placeholder="example@mail.com" required>
-                </div>
+
 
                 <div class="input-group">
                     <label for="name">Full Name (English)</label>
@@ -371,8 +356,7 @@
                 </div>
             </div>
 
-            <!-- Step 2: Contact & Photo -->
-            <div class="form-section" data-step="2">
+            <div class="form-section">
                 <h2 class="step-title">Contact & Media</h2>
                 <p class="step-subtitle">How can we reach you and identify you?</p>
 
@@ -400,8 +384,7 @@
                 </div>
             </div>
 
-            <!-- Step 3: Event Details -->
-            <div class="form-section" data-step="3">
+            <div class="form-section">
                 <h2 class="step-title">Event Participation</h2>
                 <p class="step-subtitle">Tell us about your plans for the reunion.</p>
 
@@ -446,8 +429,7 @@
                 </div>
             </div>
 
-            <!-- Step 4: Donation & Payment -->
-            <div class="form-section" data-step="4">
+            <div class="form-section">
                 <h2 class="step-title">Final Step: Contribution</h2>
                 <p class="step-subtitle">Support our reunion and complete your registration.</p>
 
@@ -501,21 +483,12 @@
             </div>
 
             <div class="navigation-buttons">
-                <button type="button" class="btn-prev" id="prevBtn" style="display: none;">Previous</button>
-                <button type="button" class="btn-next" id="nextBtn">Next</button>
-                <button type="submit" class="btn-submit" id="submitBtn" style="display: none;">Complete
-                    Registration</button>
+                <button type="submit" class="btn-submit" id="submitBtn">Complete Registration</button>
             </div>
         </form>
     </div>
 
     <script>
-        const form = document.getElementById('multiStepForm');
-        const sections = document.querySelectorAll('.form-section');
-        const progressFill = document.getElementById('progressFill');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const submitBtn = document.getElementById('submitBtn');
         const performYes = document.getElementById('perform_yes');
         const performNo = document.getElementById('perform_no');
         const performanceTypeGroup = document.getElementById('performanceTypeGroup');
@@ -528,72 +501,6 @@
             'bKash': '017XXXXXXXX (Personal)',
             'Nagad': '019XXXXXXXX (Personal)'
         };
-
-        let currentStep = 1;
-
-        function updateStep() {
-            sections.forEach(section => {
-                section.classList.remove('active');
-                if (parseInt(section.dataset.step) === currentStep) {
-                    section.classList.add('active');
-                }
-            });
-
-            // Update Progress
-            const progress = (currentStep / sections.length) * 100;
-            progressFill.style.width = `${progress}%`;
-
-            // Update Buttons
-            prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
-
-            if (currentStep === sections.length) {
-                nextBtn.style.display = 'none';
-                submitBtn.style.display = 'block';
-            } else {
-                nextBtn.style.display = 'block';
-                submitBtn.style.display = 'none';
-            }
-
-            // Scroll to top of card
-            document.querySelector('.form-card').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-
-        nextBtn.addEventListener('click', () => {
-            if (validateStep(currentStep)) {
-                currentStep++;
-                updateStep();
-            }
-        });
-
-        prevBtn.addEventListener('click', () => {
-            currentStep--;
-            updateStep();
-        });
-
-        function validateStep(step) {
-            const currentSection = document.querySelector(`.form-section[data-step="${step}"]`);
-            const requiredInputs = currentSection.querySelectorAll('[required]');
-            let valid = true;
-
-            requiredInputs.forEach(input => {
-                if (!input.value || (input.type === 'radio' && !document.querySelector(
-                        `input[name="${input.name}"]:checked`))) {
-                    input.style.borderColor = 'var(--error)';
-                    valid = false;
-                } else {
-                    input.style.borderColor = '#e5e7eb';
-                }
-            });
-
-            if (!valid) {
-                alert('Please fill all required fields before proceeding.');
-            }
-
-            return valid;
-        }
 
         // Show/Hide Performance Type
         function togglePerformanceType() {
