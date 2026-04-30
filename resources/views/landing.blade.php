@@ -175,12 +175,10 @@
 
         .hero h1,
         .hero h2 {
-            font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 24px;
             line-height: 1.2;
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            letter-spacing: -0.5px;
             color: white;
         }
 
@@ -356,9 +354,9 @@
         <div class="hero-content">
             <p style="margin-bottom: 20px; color: #e2e8f0;">মেদিলা আদর্শ উচ্চ বিদ্যালয়-এর অবসর প্রাপ্ত শিক্ষক-শিক্ষিকা
                 বৃন্দের বিদায়
-                সম্বর্ধনা।</p>
+                সম্বর্ধনা</p>
             <span class="hero-badge">৪০ বছর পূর্তি উপলক্ষে</span>
-            <h2>প্রাক্তন-বর্তমান ছাত্র-ছাত্রীদের <span class="highlight">পুণর্মিলনী</span> অনুষ্ঠান-২০২৬ ইং</h2>
+            <h2>প্রাক্তন-বর্তমান ছাত্র-ছাত্রীদের পুণর্মিলনী অনুষ্ঠান-২০২৬ ইং</h2>
             <p style="font-size: 1.1rem; opacity: 0.8;">স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ |</p>
             <p style="font-size: 1.1rem; opacity: 0.8;">তারিখ: ৩০/০৫/২৬ ইং | রোজ শনিবার</p>
             <div class="cta-wrapper">

@@ -329,7 +329,7 @@
                         <div class="radio-option">
                             <input type="radio" id="spouse_none" name="spouse_type" value="none"
                                 {{ old('spouse_type', 'none') == 'none' ? 'checked' : '' }}>
-                            <label for="spouse_none">কোনও না</label>
+                            <label for="spouse_none">কেউ না</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="spouse_husband" name="spouse_type" value="husband"
@@ -351,6 +351,11 @@
                         value="{{ old('number_of_children', 0) }}" min="0" placeholder="Number of children"
                         required>
                 </div>
+                <div class="input-group">
+                    <label for="donation_amount">নূন্যতম পূনর্মিলনী ফি</label>
+                    <input type="number" id="donation_amount" name="donation_amount"
+                        value="{{ old('donation_amount') }}" placeholder="Amount in BDT" required>
+                </div>
 
                 {{-- 7. PAYMENT GETWAY --}}
                 <div class="input-group">
@@ -364,7 +369,7 @@
                         <div class="radio-option">
                             <input type="radio" id="pay_nagad" name="payment_method" value="Nagad"
                                 {{ old('payment_method') == 'Nagad' ? 'checked' : '' }}>
-                            <label for="pay_nagad">নাগদ</label>
+                            <label for="pay_nagad">নগদ</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="pay_bank" name="payment_method" value="Bank"

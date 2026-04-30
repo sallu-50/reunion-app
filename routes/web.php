@@ -12,12 +12,6 @@ Route::get('/', function () {
     return view('landing', compact('totalApplied', 'totalApproved'));
 });
 
-// Temporary Migration Route (Delete after use)
-Route::get('/migrate-db', function() {
-    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-    return '<pre>' . \Illuminate\Support\Facades\Artisan::output() . '</pre>';
-});
-
 // Reunion Application Form
 Route::get('/apply', function () {
     return view('welcome');
