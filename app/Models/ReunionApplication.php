@@ -11,6 +11,7 @@ class ReunionApplication extends Model
         'email',
         'phone',
         'graduation_year',
+        'tshirt_size',
         'message',
         'status',
         'member_type',

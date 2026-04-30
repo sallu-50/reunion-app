@@ -322,6 +322,19 @@
                         @endfor
                     </select>
                 </div>
+
+                {{-- NEW: T-SHIRT SIZE --}}
+                <div class="input-group">
+                    <label for="tshirt_size">গেঞ্জির সাইজ (T-Shirt Size)</label>
+                    <select id="tshirt_size" name="tshirt_size" required>
+                        <option value="" disabled {{ old('tshirt_size') ? '' : 'selected' }}>সাইজ নির্বাচন করুন</option>
+                        <option value="S" {{ old('tshirt_size') == 'S' ? 'selected' : '' }}>S</option>
+                        <option value="M" {{ old('tshirt_size') == 'M' ? 'selected' : '' }}>M</option>
+                        <option value="L" {{ old('tshirt_size') == 'L' ? 'selected' : '' }}>L</option>
+                        <option value="XL" {{ old('tshirt_size') == 'XL' ? 'selected' : '' }}>XL</option>
+                        <option value="XXL" {{ old('tshirt_size') == 'XXL' ? 'selected' : '' }}>XXL</option>
+                    </select>
+                </div>
                 {{-- NEW: SPOUSE SELECTION --}}
                 <div class="input-group">
                     <label>আপনার সাথে আগত অতিথিরবিবরণ (জনপ্রতি ৩০৫ টাকা)</label>

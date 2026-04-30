@@ -25,6 +25,7 @@ Route::post('/apply', function (Request $request) {
         'spouse_type' => 'nullable|in:husband,wife,none',
         'member_type' => 'required|in:guest,ex_student,running_student',
         'graduation_year' => 'required|integer|min:1900|max:' . date('Y'),
+        'tshirt_size' => 'required|in:S,M,L,XL,XXL',
         'number_of_children' => 'required|integer|min:0',
         'payment_method' => 'required|in:bKash,Nagad,Bank',
         'donation_amount' => 'required|integer|min:0',

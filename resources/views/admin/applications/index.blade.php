@@ -451,6 +451,7 @@
                             <th>Phone</th>
                             <th>Type</th>
                             <th>Year</th>
+                            <th>Size</th>
                             <th>Spouse</th>
                             <th>Children</th>
                             <th>Payment</th>
@@ -469,6 +470,7 @@
                                 <td>{{ $app->phone }}</td>
                                 <td>{{ ucfirst(str_replace('_', ' ', $app->member_type)) }}</td>
                                 <td>{{ $app->graduation_year }}</td>
+                                <td><span class="badge" style="background: #f1f5f9; color: #475569;">{{ $app->tshirt_size }}</span></td>
                                 <td>{{ $app->spouse_type ? ucfirst($app->spouse_type) : 'None' }}</td>
                                 <td>{{ $app->number_of_children }}</td>
                                 <td>{{ $app->payment_method }}</td>
@@ -552,6 +554,10 @@
                 <div class="detail-item">
                     <div class="detail-label">Graduation Year</div>
                     <div class="detail-value">${app.graduation_year}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">T-Shirt Size</div>
+                    <div class="detail-value" style="font-weight: 700; color: var(--primary);">${app.tshirt_size || 'N/A'}</div>
                 </div>
                 <div class="detail-item">
                     <div class="detail-label">Phone</div>
