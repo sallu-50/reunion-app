@@ -199,12 +199,12 @@
 
         .hero-badge {
             display: inline-block;
-            background: rgba(99, 102, 241, 0.2);
-            color: #818cf8;
+            background: rgba(99, 102, 241, 0.7);
+            color: #ffffff;
             padding: 8px 20px;
             border-radius: 99px;
-            font-size: 0.9rem;
-            font-weight: 700;
+            font-size: 1.5rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
             border: 1px solid rgba(99, 102, 241, 0.3);
@@ -298,7 +298,7 @@
             }
 
             .hero-badge {
-                font-size: 0.75rem;
+                font-size: 1rem;
                 padding: 6px 16px;
                 margin-bottom: 16px;
             }
