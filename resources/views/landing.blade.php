@@ -81,6 +81,47 @@
             color: white;
         }
 
+        .announcement-bar {
+            position: fixed;
+            top: 71px; /* Just below the navbar */
+            left: 0;
+            width: 100%;
+            background: #4f46e5; /* Primary Indigo */
+            color: white;
+            padding: 10px 0;
+            z-index: 999;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ticker-wrapper {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: ticker 40s linear infinite;
+        }
+
+        .ticker-item {
+            padding: 0 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ticker-item::after {
+            content: '•';
+            margin-left: 50px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
         .hero {
             position: relative;
             height: 100vh;
@@ -109,8 +150,8 @@
             max-width: 800px;
             padding: 0 20px;
             animation: fadeInUp 1s ease-out;
-            margin-top: 60px;
-            /* Offset for navbar */
+            margin-top: 100px;
+            /* Offset for navbar + announcement bar */
         }
 
         @keyframes fadeInUp {
@@ -219,6 +260,20 @@
         </div>
         <a href="tel:+880123456789" class="nav-contact">+880 123 456 789</a>
     </nav>
+
+    <div class="announcement-bar">
+        <div class="ticker-wrapper">
+            <div class="ticker-item">Registration Last Date: 15th May 2026</div>
+            <div class="ticker-item">Venue: Grand Campus Auditorium</div>
+            <div class="ticker-item">Event Date: 25th May 2026</div>
+            <div class="ticker-item">Join us for the Grand Reunion</div>
+            {{-- Duplicate for seamless loop --}}
+            <div class="ticker-item">Registration Last Date: 15th May 2026</div>
+            <div class="ticker-item">Venue: Grand Campus Auditorium</div>
+            <div class="ticker-item">Event Date: 25th May 2026</div>
+            <div class="ticker-item">Join us for the Grand Reunion</div>
+        </div>
+    </div>
 
     <section class="hero">
         <div class="hero-content">
