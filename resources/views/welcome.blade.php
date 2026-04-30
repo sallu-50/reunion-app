@@ -353,12 +353,22 @@
 
                 <div id="payment_info" class="alert alert-success"
                     style="display: none; margin-top: 15px; border-left: 5px solid var(--primary); background: rgba(99, 102, 241, 0.1); color: var(--text-main);">
-                    <p style="margin: 0; font-weight: 600;">Send Money to this number:</p>
-                    <p id="payment_number"
-                        style="font-size: 1.25rem; margin: 5px 0 0; color: var(--primary); font-weight: 800; letter-spacing: 1px;">
-                    </p>
-                    <p style="margin: 5px 0 0; font-size: 0.85rem; color: var(--text-muted);">(Please include your name
-                        in the reference)</p>
+                    <div id="mobile_payment_div">
+                        <p style="margin: 0; font-weight: 600;">Send Money to this number:</p>
+                        <p id="payment_number"
+                            style="font-size: 1.25rem; margin: 5px 0 0; color: var(--primary); font-weight: 800; letter-spacing: 1px;">
+                        </p>
+                    </div>
+                    <div id="bank_payment_div" style="display: none;">
+                        <p style="margin: 0; font-weight: 600;">Bank Account Details:</p>
+                        <div style="margin-top: 10px; font-size: 1rem; line-height: 1.6; color: var(--text-main);">
+                            <p style="margin: 0;"><strong>Account Name:</strong> <span id="bank_acc_name"></span></p>
+                            <p style="margin: 0;"><strong>Account No:</strong> <span id="bank_acc_no"></span></p>
+                            <p style="margin: 0;"><strong>Bank Name:</strong> <span id="bank_name"></span></p>
+                            <p style="margin: 0;"><strong>Branch:</strong> <span id="bank_branch"></span></p>
+                        </div>
+                    </div>
+                    <p style="margin: 5px 0 0; font-size: 0.85rem; color: var(--text-muted);">(Please include your name in the reference/description)</p>
                 </div>
 
                 {{-- 8. DONATION AMOUNT --}}
@@ -381,21 +391,37 @@
     </div>
 
     <script>
-        const payBkash = document.getElementById('pay_bkash');
-        const payNagad = document.getElementById('pay_nagad');
-        const paymentInfo = document.getElementById('payment_info');
-        const paymentNumber = document.getElementById('payment_number');
-
         const paymentNumbers = {
             'bKash': '017XXXXXXXX (Personal)',
             'Nagad': '019XXXXXXXX (Personal)'
         };
 
+        const bankDetails = {
+            'name': 'Alumni Reunion Association',
+            'no': '1234567890',
+            'bank': 'Dutch-Bangla Bank PLC',
+            'branch': 'Dhaka Main Branch'
+        };
+
         function updatePaymentNumber() {
             const selected = document.querySelector('input[name="payment_method"]:checked');
+            const mobileDiv = document.getElementById('mobile_payment_div');
+            const bankDiv = document.getElementById('bank_payment_div');
+
             if (selected) {
                 paymentInfo.style.display = 'block';
-                paymentNumber.textContent = paymentNumbers[selected.value];
+                if (selected.value === 'Bank') {
+                    mobileDiv.style.display = 'none';
+                    bankDiv.style.display = 'block';
+                    document.getElementById('bank_acc_name').textContent = bankDetails.name;
+                    document.getElementById('bank_acc_no').textContent = bankDetails.no;
+                    document.getElementById('bank_name').textContent = bankDetails.bank;
+                    document.getElementById('bank_branch').textContent = bankDetails.branch;
+                } else {
+                    mobileDiv.style.display = 'block';
+                    bankDiv.style.display = 'none';
+                    paymentNumber.textContent = paymentNumbers[selected.value];
+                }
             } else {
                 paymentInfo.style.display = 'none';
             }
