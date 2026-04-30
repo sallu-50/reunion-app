@@ -224,8 +224,8 @@
 
 <body>
     <div class="form-card">
-        <h2 class="step-title">Reunion Registration</h2>
-        <p class="step-subtitle">Please fill in the details below to register.</p>
+        <h2 class="step-title">পূণর্মিলনী রেজিষ্ট্রেশন </h2>
+        <p class="step-subtitle">দয়া করে রেজিষ্ট্রেশন ফরম পূরণ করুন</p>
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -251,7 +251,7 @@
                 <div class="input-group">
                     <label for="name">সম্পূর্ণ নাম </label>
                     <input type="text" id="name" name="name" value="{{ old('name') }}"
-                        placeholder="Enter your full name" required>
+                        placeholder="আপনার সম্পূর্ণ নাম দিন" required>
                 </div>
 
                 {{-- 2. PHONE NUMBER --}}
@@ -268,12 +268,12 @@
                         <div class="radio-option">
                             <input type="radio" id="gender_male" name="gender" value="male"
                                 {{ old('gender') == 'male' ? 'checked' : '' }} required>
-                            <label for="gender_male">Male</label>
+                            <label for="gender_male">পুরুষ</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="gender_female" name="gender" value="female"
                                 {{ old('gender') == 'female' ? 'checked' : '' }}>
-                            <label for="gender_female">Female</label>
+                            <label for="gender_female">মহিলা</label>
                         </div>
                         <!-- <div class="radio-option">
                             <input type="radio" id="gender_other" name="gender" value="other"
@@ -292,17 +292,17 @@
                         <div class="radio-option">
                             <input type="radio" id="type_ex" name="member_type" value="ex_student"
                                 {{ old('member_type') == 'ex_student' ? 'checked' : '' }} required>
-                            <label for="type_ex">EX-Student</label>
+                            <label for="type_ex">প্রাক্তন ছাত্র</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="type_running" name="member_type" value="running_student"
                                 {{ old('member_type') == 'running_student' ? 'checked' : '' }}>
-                            <label for="type_running">Running Student</label>
+                            <label for="type_running">বর্তমান ছাত্র</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="type_guest" name="member_type" value="guest"
                                 {{ old('member_type') == 'guest' ? 'checked' : '' }}>
-                            <label for="type_guest">Guest</label>
+                            <label for="type_guest">অতিথি</label>
                         </div>
                     </div>
                 </div>
@@ -311,7 +311,8 @@
                 <div class="input-group">
                     <label for="graduation_year">পাশের সাল</label>
                     <select id="graduation_year" name="graduation_year" required>
-                        <option value="" disabled {{ old('graduation_year') ? '' : 'selected' }}>Select Year
+                        <option value="" disabled {{ old('graduation_year') ? '' : 'selected' }}>পাশের বছর
+                            নির্বাচন করুন
                         </option>
                         @for ($year = 2025; $year >= 1995; $year--)
                             <option value="{{ $year }}"
@@ -328,17 +329,17 @@
                         <div class="radio-option">
                             <input type="radio" id="spouse_none" name="spouse_type" value="none"
                                 {{ old('spouse_type', 'none') == 'none' ? 'checked' : '' }}>
-                            <label for="spouse_none">None</label>
+                            <label for="spouse_none">কোনও না</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="spouse_husband" name="spouse_type" value="husband"
                                 {{ old('spouse_type') == 'husband' ? 'checked' : '' }}>
-                            <label for="spouse_husband">Husband</label>
+                            <label for="spouse_husband">স্বামী</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="spouse_wife" name="spouse_type" value="wife"
                                 {{ old('spouse_type') == 'wife' ? 'checked' : '' }}>
-                            <label for="spouse_wife">Wife</label>
+                            <label for="spouse_wife">স্ত্রী</label>
                         </div>
                     </div>
                 </div>
@@ -358,17 +359,17 @@
                         <div class="radio-option">
                             <input type="radio" id="pay_bkash" name="payment_method" value="bKash"
                                 {{ old('payment_method') == 'bKash' ? 'checked' : '' }} required>
-                            <label for="pay_bkash">bKash</label>
+                            <label for="pay_bkash">বিকাশ </label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="pay_nagad" name="payment_method" value="Nagad"
                                 {{ old('payment_method') == 'Nagad' ? 'checked' : '' }}>
-                            <label for="pay_nagad">Nagad</label>
+                            <label for="pay_nagad">নাগদ</label>
                         </div>
                         <div class="radio-option">
                             <input type="radio" id="pay_bank" name="payment_method" value="Bank"
                                 {{ old('payment_method') == 'Bank' ? 'checked' : '' }}>
-                            <label for="pay_bank">Bank Details</label>
+                            <label for="pay_bank">ব্যাংক বিবরণ</label>
                         </div>
                     </div>
                 </div>
@@ -396,7 +397,7 @@
 
                 {{-- 8. DONATION AMOUNT --}}
                 <div class="input-group">
-                    <label for="donation_amount">অনুদানের পরিমান</label>
+                    <label for="donation_amount">নূন্যতম পূনর্মিলনী ফি</label>
                     <input type="number" id="donation_amount" name="donation_amount"
                         value="{{ old('donation_amount') }}" placeholder="Amount in BDT" required>
                 </div>
@@ -456,7 +457,7 @@
         function calculateDonation() {
             try {
                 let total = 0;
-                
+
                 // Member Type Calculation
                 const memberType = document.querySelector('input[name="member_type"]:checked');
                 if (memberType) {

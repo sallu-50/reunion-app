@@ -173,24 +173,27 @@
             }
         }
 
-        .hero h1 {
-            font-size: 5rem;
+        .hero h1,
+        .hero h2 {
+            font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 24px;
-            line-height: 1.1;
+            line-height: 1.2;
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
+            color: white;
         }
 
-        .hero h1 .highlight {
+        .hero .highlight {
             background: linear-gradient(to right, #818cf8, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
 
         .hero p {
             font-size: 1.25rem;
-            margin-bottom: 48px;
+            margin-bottom: 24px;
             opacity: 0.9;
             font-weight: 400;
             line-height: 1.6;
@@ -219,6 +222,9 @@
         }
 
         .cta-sub {
+            background: rgba(148, 163, 184, 0.2);
+            padding: 6px 16px;
+            border-radius: 99px;
             font-size: 0.85rem;
             color: #94a3b8;
             font-weight: 500;
@@ -315,37 +321,46 @@
     <nav class="navbar">
         <div class="nav-stats">
             <div class="stat-badge">
-                Applied: <span>{{ $totalApplied }}</span>
+                মোট আবেদন: <span>{{ $totalApplied }}</span>
             </div>
             <div class="stat-badge">
-                Approved: <span>{{ $totalApproved }}</span>
+                আবেদন গৃহিত হয়েছে: <span>{{ $totalApproved }}</span>
             </div>
         </div>
-        <a href="tel:+880123456789" class="nav-contact">+880 1753-499696</a>
+        <a href="tel:+880123456789" class="nav-contact">০১৭৫৩৪৯৯৬৯৬</a>
+        {{-- <a href="tel:+8801737984833" class="nav-contact">০১৭৩৭৯৮৪৮৩৩</a> --}}
     </nav>
 
     <div class="announcement-bar">
         <div class="ticker-wrapper">
             <div class="ticker-item">রেজিষ্ট্রেশনের শেষ তারিখ: ২০/০৫/২৬ ইং ।</div>
             <div class="ticker-item">স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ।</div>
-            <div class="ticker-item">তারিখ: ২ ৩০/০৫/২৬ ইং ।</div>
+            <div class="ticker-item">তারিখ: ৩০/০৫/২৬ ইং ।</div>
             <div class="ticker-item">রোজ শনিবার ।</div>
+
+            <div class="ticker-item">প্রয়োজনে : ০১৭৩৭৯৮৪৮৩৩, ০১৭৫৩৪৯৯৬৯৬ </div>
+
+
+
             {{-- Duplicate for seamless loop --}}
             <div class="ticker-item">রেজিষ্ট্রেশনের শেষ তারিখ: ২০/০৫/২৬ ইং ।</div>
             <div class="ticker-item">স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ।</div>
             <div class="ticker-item">তারিখ: ২ ৩০/০৫/২৬ ইং ।</div>
             <div class="ticker-item">রোজ শনিবার ।</div>
+            <div class="ticker-item">প্রয়োজনে : ০১৭৩৭৯৮৪৮৩৩, ০১৭৫৩৪৯৯৬৯৬ </div>
+
         </div>
     </div>
 
     <section class="hero">
         <div class="hero-content">
+            <p style="margin-bottom: 20px; color: #e2e8f0;">মেদিলা আদর্শ উচ্চ বিদ্যালয়-এর অবসর প্রাপ্ত শিক্ষক-শিক্ষিকা
+                বৃন্দের বিদায়
+                সম্বর্ধনা।</p>
             <span class="hero-badge">৪০ বছর পূর্তি উপলক্ষে</span>
             <h2>প্রাক্তন-বর্তমান ছাত্র-ছাত্রীদের <span class="highlight">পুণর্মিলনী</span> অনুষ্ঠান-২০২৬ ইং</h2>
-            <p style="margin-bottom: 20px;">মেদিলা আদর্শ উচ্চ বিদ্যালয়-এর অবসর প্রাপ্ত শিক্ষক-শিক্ষিকা বৃন্দের বিদায়
-                সম্বর্ধনা।</p>
-            <p style="font-size: 1.1rem; opacity: 0.8;">স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ | তারিখ: ৩০/০৫/২৬ ইং
-                (শনিবার)</p>
+            <p style="font-size: 1.1rem; opacity: 0.8;">স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ |</p>
+            <p style="font-size: 1.1rem; opacity: 0.8;">তারিখ: ৩০/০৫/২৬ ইং | রোজ শনিবার</p>
             <div class="cta-wrapper">
                 <a href="{{ url('/apply') }}" class="cta-button">রেজিষ্ট্রেশন করুন</a>
                 <p class="cta-sub">রেজিষ্ট্রেশনের শেষ তারিখ: ২০ মে ২০২৬</p>
