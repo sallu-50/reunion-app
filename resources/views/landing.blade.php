@@ -321,7 +321,7 @@
                 Approved: <span>{{ $totalApproved }}</span>
             </div>
         </div>
-        <a href="tel:+880123456789" class="nav-contact">+880 123 456 789</a>
+        <a href="tel:+880123456789" class="nav-contact">+880 1753-499696</a>
     </nav>
 
     <div class="announcement-bar">
@@ -354,7 +354,7 @@
     </section>
 
     <footer class="footer" id="contact">
-        <p>Questions? Contact us at: <strong>alumni@reunion.com</strong> or call <strong>+880 123 456 789</strong></p>
+        <p>Questions? Contact us: <strong>+880 1753-499696</strong></p>
         <p>&copy; {{ date('Y') }} Grand Reunion. All rights reserved.</p>
     </footer>
 </body>
