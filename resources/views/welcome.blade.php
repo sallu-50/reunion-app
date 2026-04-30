@@ -327,7 +327,8 @@
                 <div class="input-group">
                     <label for="tshirt_size">গেঞ্জির সাইজ (T-Shirt Size)</label>
                     <select id="tshirt_size" name="tshirt_size" required>
-                        <option value="" disabled {{ old('tshirt_size') ? '' : 'selected' }}>সাইজ নির্বাচন করুন</option>
+                        <option value="" disabled {{ old('tshirt_size') ? '' : 'selected' }}>সাইজ নির্বাচন করুন
+                        </option>
                         <option value="S" {{ old('tshirt_size') == 'S' ? 'selected' : '' }}>S</option>
                         <option value="M" {{ old('tshirt_size') == 'M' ? 'selected' : '' }}>M</option>
                         <option value="L" {{ old('tshirt_size') == 'L' ? 'selected' : '' }}>L</option>
@@ -414,11 +415,11 @@
                 </div>
 
                 {{-- 8. DONATION AMOUNT --}}
-                <div class="input-group">
+                {{-- <div class="input-group">
                     <label for="donation_amount">নূন্যতম পূনর্মিলনী ফি</label>
                     <input type="number" id="donation_amount" name="donation_amount"
                         value="{{ old('donation_amount') }}" placeholder="Amount in BDT" required>
-                </div>
+                </div> --}}
 
                 {{-- 9. TNXID/PHONE NUMBER --}}
                 <div class="input-group">
