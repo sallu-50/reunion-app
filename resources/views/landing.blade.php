@@ -83,10 +83,12 @@
 
         .announcement-bar {
             position: fixed;
-            top: 71px; /* Just below the navbar */
+            top: 71px;
+            /* Just below the navbar */
             left: 0;
             width: 100%;
-            background: #4f46e5; /* Primary Indigo */
+            background: #4f46e5;
+            /* Primary Indigo */
             color: white;
             padding: 10px 0;
             z-index: 999;
@@ -118,8 +120,13 @@
         }
 
         @keyframes ticker {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
         }
 
         .hero {
@@ -277,9 +284,14 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Grand Alumni Reunion</h1>
-            <p>Reconnect with old friends, relive cherished memories, and celebrate the journey together. We can't wait
-                to see you back on campus!</p>
+            <h1>মেদিলা আদর্শ উচ্চ বিদ্যালয়-এর অবসর প্রাপ্ত শিক্ষক-শিক্ষিকা বৃন্দের বিদায় সম্বর্ধনা ও ৪০ বছর পূর্তি
+                উপলক্ষে প্রাক্তন-বর্তমান ছাত্র-ছাত্রীদের
+                পুণর্মিলনী অনুষ্ঠান-২০২৬ ইং।</h1>
+            <h2>স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ।</h2>
+            <h2>তারিখ: ২ ৩০/০৫/২৬ ইং । </h2>
+            <h2>রোজ শনিবার ।</h2>
+            <h2>রেজিষ্ট্রেশনের শেষ তারিখ: ২০/০৫/২৬ ইং ।</h2>
+
             <a href="{{ url('/apply') }}" class="cta-button">REGISTER NOW</a>
         </div>
     </section>
