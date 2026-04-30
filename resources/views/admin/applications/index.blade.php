@@ -243,8 +243,7 @@
         }
 
         .modal-content {
-            background: white;
-            margin: 5% auto;
+            background: var(--card);
             padding: 30px;
             width: 90%;
             max-width: 800px;
@@ -252,6 +251,59 @@
             max-height: 85vh;
             overflow-y: auto;
             position: relative;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filter-group select {
+                width: 100%;
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            table {
+                min-width: 800px;
+            }
+
+            .modal-content {
+                padding: 20px;
+                width: 95%;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .modal-header {

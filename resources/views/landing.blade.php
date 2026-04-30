@@ -174,18 +174,56 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             line-height: 1.1;
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
+            font-size: 1.25rem;
+            margin-bottom: 48px;
             opacity: 0.9;
-            font-weight: 300;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            padding: 8px 20px;
+            border-radius: 99px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            margin-bottom: 24px;
+        }
+
+        .cta-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cta-sub {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .cta-button {
@@ -224,9 +262,18 @@
 
         @media (max-width: 768px) {
             .navbar {
-                padding: 15px 20px;
+                padding: 10px 20px;
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px;
+            }
+
+            .announcement-bar {
+                top: 110px;
+                /* Adjust for stacked navbar height */
+            }
+
+            .hero-content {
+                margin-top: 150px;
             }
 
             .nav-stats {
@@ -241,15 +288,24 @@
 
             .hero h1 {
                 font-size: 2.8rem;
+                letter-spacing: 0;
             }
 
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                margin-bottom: 30px;
+                padding: 0 10px;
+            }
+
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 6px 16px;
+                margin-bottom: 16px;
             }
 
             .cta-button {
-                padding: 16px 35px;
-                font-size: 1.2rem;
+                padding: 14px 28px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -270,29 +326,28 @@
 
     <div class="announcement-bar">
         <div class="ticker-wrapper">
-            <div class="ticker-item">Registration Last Date: 15th May 2026</div>
-            <div class="ticker-item">Venue: Grand Campus Auditorium</div>
-            <div class="ticker-item">Event Date: 25th May 2026</div>
-            <div class="ticker-item">Join us for the Grand Reunion</div>
+            <div class="ticker-item">রেজিষ্ট্রেশনের শেষ তারিখ: ২০/০৫/২৬ ইং ।</div>
+            <div class="ticker-item">স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ।</div>
+            <div class="ticker-item">তারিখ: ২ ৩০/০৫/২৬ ইং ।</div>
+            <div class="ticker-item">রোজ শনিবার ।</div>
             {{-- Duplicate for seamless loop --}}
-            <div class="ticker-item">Registration Last Date: 15th May 2026</div>
-            <div class="ticker-item">Venue: Grand Campus Auditorium</div>
-            <div class="ticker-item">Event Date: 25th May 2026</div>
-            <div class="ticker-item">Join us for the Grand Reunion</div>
+            <div class="ticker-item">রেজিষ্ট্রেশনের শেষ তারিখ: ২০/০৫/২৬ ইং ।</div>
+            <div class="ticker-item">স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ।</div>
+            <div class="ticker-item">তারিখ: ২ ৩০/০৫/২৬ ইং ।</div>
+            <div class="ticker-item">রোজ শনিবার ।</div>
         </div>
     </div>
 
     <section class="hero">
         <div class="hero-content">
-            <h2>মেদিলা আদর্শ উচ্চ বিদ্যালয়-এর অবসর প্রাপ্ত শিক্ষক-শিক্ষিকা বৃন্দের বিদায় সম্বর্ধনা ও ৪০ বছর পূর্তি
-                উপলক্ষে প্রাক্তন-বর্তমান ছাত্র-ছাত্রীদের
-                পুণর্মিলনী অনুষ্ঠান-২০২৬ ইং।</h2>
-            <h2>স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ।</h2>
-            <h2>তারিখ: ২ ৩০/০৫/২৬ ইং । </h2>
-            <h2>রোজ শনিবার ।</h2>
-            <h2>রেজিষ্ট্রেশনের শেষ তারিখ: ২০/০৫/২৬ ইং ।</h2>
-
-            <a href="{{ url('/apply') }}" class="cta-button">REGISTER NOW</a>
+            <span class="hero-badge">৪০ বছর পূর্তি উপলক্ষে</span>
+            <h1>প্রাক্তন-বর্তমান ছাত্র-ছাত্রীদের <span class="highlight">পুণর্মিলনী</span> অনুষ্ঠান-২০২৬ ইং</h1>
+            <p style="margin-bottom: 20px;">মেদিলা আদর্শ উচ্চ বিদ্যালয়-এর অবসর প্রাপ্ত শিক্ষক-শিক্ষিকা বৃন্দের বিদায় সম্বর্ধনা।</p>
+            <p style="font-size: 1.1rem; opacity: 0.8;">স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ | তারিখ: ৩০/০৫/২৬ ইং (শনিবার)</p>
+            <div class="cta-wrapper">
+                <a href="{{ url('/apply') }}" class="cta-button">রেজিষ্ট্রেশন করুন</a>
+                <p class="cta-sub">রেজিষ্ট্রেশনের শেষ তারিখ: ২০ মে ২০২৬</p>
+            </div>
         </div>
     </section>
 

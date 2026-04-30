@@ -69,6 +69,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -186,18 +187,36 @@
 
         @media (max-width: 640px) {
             .form-card {
-                padding: 24px;
+                padding: 20px;
                 border-radius: 0;
-                height: 100%;
+                min-height: 100vh;
                 max-width: 100%;
+                margin: 0;
+                box-shadow: none;
             }
 
             body {
                 padding: 0;
+                background: white;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 10px;
             }
 
             .radio-option {
                 min-width: 100%;
+                padding: 12px;
+            }
+
+            .step-title {
+                font-size: 1.6rem;
+            }
+
+            .step-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -230,21 +249,21 @@
             <div class="form-section">
                 {{-- 1. FULL NAME --}}
                 <div class="input-group">
-                    <label for="name">FULL NAME</label>
+                    <label for="name">সম্পূর্ণ নাম </label>
                     <input type="text" id="name" name="name" value="{{ old('name') }}"
                         placeholder="Enter your full name" required>
                 </div>
 
                 {{-- 2. PHONE NUMBER --}}
                 <div class="input-group">
-                    <label for="phone">PHONE NUMBER</label>
+                    <label for="phone">মোবাইল নাম্বার</label>
                     <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
                         placeholder="01XXXXXXXXX" required>
                 </div>
 
                 {{-- 3. GENDER --}}
                 <div class="input-group">
-                    <label>GENDER</label>
+                    <label>লিঙ্গ</label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="gender_male" name="gender" value="male"
@@ -264,31 +283,11 @@
                     </div>
                 </div>
 
-                {{-- NEW: SPOUSE SELECTION --}}
-                <div class="input-group">
-                    <label>SPOUSE (OPTIONAL)</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="spouse_none" name="spouse_type" value="none"
-                                {{ old('spouse_type', 'none') == 'none' ? 'checked' : '' }}>
-                            <label for="spouse_none">None</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="spouse_husband" name="spouse_type" value="husband"
-                                {{ old('spouse_type') == 'husband' ? 'checked' : '' }}>
-                            <label for="spouse_husband">Husband</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="spouse_wife" name="spouse_type" value="wife"
-                                {{ old('spouse_type') == 'wife' ? 'checked' : '' }}>
-                            <label for="spouse_wife">Wife</label>
-                        </div>
-                    </div>
-                </div>
+
 
                 {{-- 4. MEMBER TYPE --}}
                 <div class="input-group">
-                    <label>MEMBER TYPE</label>
+                    <label>ছাত্র/ছাত্রীর ধরন (রেজিষ্ট্রেশন ফি ১০২০ টাকা)</label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="type_ex" name="member_type" value="ex_student"
@@ -310,20 +309,43 @@
 
                 {{-- 5. PASSING YEAR --}}
                 <div class="input-group">
-                    <label for="graduation_year">PASSING YEAR</label>
+                    <label for="graduation_year">পাশের সাল</label>
                     <select id="graduation_year" name="graduation_year" required>
-                        <option value="" disabled {{ old('graduation_year') ? '' : 'selected' }}>Select Year</option>
-                        @for ($year = 2025; $year >= 1985; $year--)
-                            <option value="{{ $year }}" {{ old('graduation_year') == $year ? 'selected' : '' }}>
+                        <option value="" disabled {{ old('graduation_year') ? '' : 'selected' }}>Select Year
+                        </option>
+                        @for ($year = 2025; $year >= 1995; $year--)
+                            <option value="{{ $year }}"
+                                {{ old('graduation_year') == $year ? 'selected' : '' }}>
                                 {{ $year }}
                             </option>
                         @endfor
                     </select>
                 </div>
+                {{-- NEW: SPOUSE SELECTION --}}
+                <div class="input-group">
+                    <label>আপনার সাথে আগত অতিথিরবিবরণ (জনপ্রতি ৩০৫ টাকা)</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="spouse_none" name="spouse_type" value="none"
+                                {{ old('spouse_type', 'none') == 'none' ? 'checked' : '' }}>
+                            <label for="spouse_none">None</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="spouse_husband" name="spouse_type" value="husband"
+                                {{ old('spouse_type') == 'husband' ? 'checked' : '' }}>
+                            <label for="spouse_husband">Husband</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="spouse_wife" name="spouse_type" value="wife"
+                                {{ old('spouse_type') == 'wife' ? 'checked' : '' }}>
+                            <label for="spouse_wife">Wife</label>
+                        </div>
+                    </div>
+                </div>
 
                 {{-- 6. HOW MANY CHILDREN --}}
                 <div class="input-group">
-                    <label for="number_of_children">HOW MANY CHILDREN</label>
+                    <label for="number_of_children">আপনার সাথে আগত বাচ্চার সংখ্যা (জনপ্রতি ৩০৫ টাকা)</label>
                     <input type="number" id="number_of_children" name="number_of_children"
                         value="{{ old('number_of_children', 0) }}" min="0" placeholder="Number of children"
                         required>
@@ -331,7 +353,7 @@
 
                 {{-- 7. PAYMENT GETWAY --}}
                 <div class="input-group">
-                    <label>PAYMENT GETWAY</label>
+                    <label>পেমেন্ট মাধ্যম</label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" id="pay_bkash" name="payment_method" value="bKash"
@@ -368,19 +390,20 @@
                             <p style="margin: 0;"><strong>Branch:</strong> <span id="bank_branch"></span></p>
                         </div>
                     </div>
-                    <p style="margin: 5px 0 0; font-size: 0.85rem; color: var(--text-muted);">(Please include your name in the reference/description)</p>
+                    <p style="margin: 5px 0 0; font-size: 0.85rem; color: var(--text-muted);">(Please include your name
+                        in the reference/description)</p>
                 </div>
 
                 {{-- 8. DONATION AMOUNT --}}
                 <div class="input-group">
-                    <label for="donation_amount">DONATION AMOUNT</label>
+                    <label for="donation_amount">অনুদানের পরিমান</label>
                     <input type="number" id="donation_amount" name="donation_amount"
                         value="{{ old('donation_amount') }}" placeholder="Amount in BDT" required>
                 </div>
 
                 {{-- 9. TNXID/PHONE NUMBER --}}
                 <div class="input-group">
-                    <label for="transaction_number">TNXID/PHONE NUMBER</label>
+                    <label for="transaction_number">মোবাইল নাম্বার/ ট্রানজেকশন আইডি</label>
                     <input type="text" id="transaction_number" name="transaction_number"
                         value="{{ old('transaction_number') }}" placeholder="Enter TrxID or Sender Phone" required>
                 </div>
@@ -395,15 +418,15 @@
         const paymentNumber = document.getElementById('payment_number');
 
         const paymentNumbers = {
-            'bKash': '017XXXXXXXX (Personal)',
-            'Nagad': '019XXXXXXXX (Personal)'
+            'bKash': '01720-007927 (Personal)',
+            'Nagad': '01401499696 (Personal)'
         };
 
         const bankDetails = {
-            'name': 'Alumni Reunion Association',
-            'no': '1234567890',
-            'bank': 'Dutch-Bangla Bank PLC',
-            'branch': 'Dhaka Main Branch'
+            'name': 'B-tech Solution',
+            'no': '2811100010367',
+            'bank': 'Dutch Bangla Bank Ltd.',
+            'branch': 'Seedstore Branch, Mymensingh'
         };
 
         function updatePaymentNumber() {
@@ -430,13 +453,48 @@
             }
         }
 
+        function calculateDonation() {
+            let total = 0;
+            
+            // Member Type Calculation
+            const memberType = document.querySelector('input[name="member_type"]:checked');
+            if (memberType && (memberType.value === 'ex_student' || memberType.value === 'running_student')) {
+                total += 1020;
+            } else if (memberType && memberType.value === 'guest') {
+                total += 1020; // Assuming guest also pays base fee or adjust as needed
+            }
+
+            // Spouse Calculation
+            const spouseType = document.querySelector('input[name="spouse_type"]:checked');
+            if (spouseType && spouseType.value !== 'none') {
+                total += 305;
+            }
+
+            // Children Calculation
+            const childrenCount = parseInt(document.getElementById('number_of_children').value) || 0;
+            total += (childrenCount * 305);
+
+            // Update field
+            const donationField = document.getElementById('donation_amount');
+            if (donationField) {
+                donationField.value = total;
+            }
+        }
+
         // Attach event listeners to all payment methods
         document.querySelectorAll('input[name="payment_method"]').forEach(input => {
             input.addEventListener('change', updatePaymentNumber);
         });
 
+        // Attach listeners for calculation
+        document.querySelectorAll('input[name="member_type"], input[name="spouse_type"]').forEach(input => {
+            input.addEventListener('change', calculateDonation);
+        });
+        document.getElementById('number_of_children').addEventListener('input', calculateDonation);
+
         // Initialize
         updatePaymentNumber();
+        calculateDonation();
     </script>
 </body>
 
