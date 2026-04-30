@@ -303,14 +303,19 @@
 
             .hero p {
                 font-size: 1rem;
-                margin-bottom: 4px;
+                margin-bottom: 12px;
                 padding: 0 10px;
             }
 
             .hero-badge {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 padding: 6px 16px;
-                margin-bottom: 4px;
+                margin-bottom: 2px;
+                margin-top: 2px;
+            }
+
+            .cta-wrapper {
+                margin-top: 15px;
             }
 
             .cta-button {
@@ -363,8 +368,8 @@
                 সম্বর্ধনা</p>
             <span class="hero-badge">৪০ বছর পূর্তি উপলক্ষে</span>
             <h2>প্রাক্তন-বর্তমান ছাত্র-ছাত্রীদের পুণর্মিলনী অনুষ্ঠান-২০২৬ ইং</h2>
-            <p style="font-size: 1.1rem; opacity: 0.8; margin: 2px 0;">স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ|</p>
-            <p style="font-size: 1.1rem; opacity: 0.8; margin: 2px 0;">তারিখ: ৩০/০৫/২৬ ইং | রোজ শনিবার</p>
+            <p style="font-size: 1.1rem; opacity: 0.8;">স্থান: মেদিলা আদর্শ উচ্চ বিদ্যালয় মাঠ|</p>
+            <p style="font-size: 1.1rem; opacity: 0.8;">তারিখ: ৩০/০৫/২৬ ইং | রোজ শনিবার</p>
             <div class="cta-wrapper">
                 <a href="{{ url('/apply') }}" class="cta-button">রেজিষ্ট্রেশন করুন</a>
                 <p class="cta-sub">রেজিষ্ট্রেশনের শেষ তারিখ: ২০ মে ২০২৬</p>
