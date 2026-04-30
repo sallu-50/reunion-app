@@ -391,6 +391,9 @@
     </div>
 
     <script>
+        const paymentInfo = document.getElementById('payment_info');
+        const paymentNumber = document.getElementById('payment_number');
+
         const paymentNumbers = {
             'bKash': '017XXXXXXXX (Personal)',
             'Nagad': '019XXXXXXXX (Personal)'
@@ -427,8 +430,10 @@
             }
         }
 
-        payBkash.addEventListener('change', updatePaymentNumber);
-        payNagad.addEventListener('change', updatePaymentNumber);
+        // Attach event listeners to all payment methods
+        document.querySelectorAll('input[name="payment_method"]').forEach(input => {
+            input.addEventListener('change', updatePaymentNumber);
+        });
 
         // Initialize
         updatePaymentNumber();
