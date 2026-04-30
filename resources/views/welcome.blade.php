@@ -454,43 +454,64 @@
         }
 
         function calculateDonation() {
-            let total = 0;
-            
-            // Member Type Calculation
-            const memberType = document.querySelector('input[name="member_type"]:checked');
-            if (memberType && (memberType.value === 'ex_student' || memberType.value === 'running_student')) {
-                total += 1020;
-            } else if (memberType && memberType.value === 'guest') {
-                total += 1020; // Assuming guest also pays base fee or adjust as needed
-            }
+            try {
+                let total = 0;
+                
+                // Member Type Calculation
+                const memberType = document.querySelector('input[name="member_type"]:checked');
+                if (memberType) {
+                    total += 1020;
+                }
 
-            // Spouse Calculation
-            const spouseType = document.querySelector('input[name="spouse_type"]:checked');
-            if (spouseType && spouseType.value !== 'none') {
-                total += 305;
-            }
+                // Spouse Calculation
+                const spouseType = document.querySelector('input[name="spouse_type"]:checked');
+                if (spouseType && spouseType.value !== 'none') {
+                    total += 305;
+                }
 
-            // Children Calculation
-            const childrenCount = parseInt(document.getElementById('number_of_children').value) || 0;
-            total += (childrenCount * 305);
+                // Children Calculation
+                const childrenInput = document.getElementById('number_of_children');
+                if (childrenInput) {
+                    const childrenCount = parseInt(childrenInput.value) || 0;
+                    total += (childrenCount * 305);
+                }
 
-            // Update field
-            const donationField = document.getElementById('donation_amount');
-            if (donationField) {
-                donationField.value = total;
+                // Update field
+                const donationField = document.getElementById('donation_amount');
+                if (donationField) {
+                    donationField.value = total;
+                }
+            } catch (e) {
+                console.error("Calculation Error:", e);
             }
         }
 
-        // Attach event listeners to all payment methods
+        // Attach event listeners
         document.querySelectorAll('input[name="payment_method"]').forEach(input => {
             input.addEventListener('change', updatePaymentNumber);
         });
 
-        // Attach listeners for calculation
         document.querySelectorAll('input[name="member_type"], input[name="spouse_type"]').forEach(input => {
             input.addEventListener('change', calculateDonation);
         });
-        document.getElementById('number_of_children').addEventListener('input', calculateDonation);
+
+        const childrenInput = document.getElementById('number_of_children');
+        if (childrenInput) {
+            childrenInput.addEventListener('input', calculateDonation);
+        }
+
+        // Form Submit Debugging
+        const regForm = document.getElementById('registrationForm');
+        if (regForm) {
+            regForm.addEventListener('submit', function() {
+                const btn = document.getElementById('submitBtn');
+                if (btn) {
+                    btn.innerText = "Processing...";
+                    btn.style.opacity = "0.7";
+                    btn.disabled = true;
+                }
+            });
+        }
 
         // Initialize
         updatePaymentNumber();
