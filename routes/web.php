@@ -22,10 +22,11 @@ Route::post('/apply', function (Request $request) {
         'name' => 'required|string|max:255',
         'phone' => 'required|string|max:20',
         'gender' => 'required|in:male,female,other',
+        'spouse_type' => 'nullable|in:husband,wife,none',
         'member_type' => 'required|in:guest,ex_student,running_student',
         'graduation_year' => 'required|integer|min:1900|max:' . date('Y'),
-        'number_of_guests' => 'required|integer|min:0',
-        'payment_method' => 'required|in:bKash,Nagad',
+        'number_of_children' => 'required|integer|min:0',
+        'payment_method' => 'required|in:bKash,Nagad,Bank',
         'donation_amount' => 'required|integer|min:0',
         'transaction_number' => 'required|string|max:255',
     ]);

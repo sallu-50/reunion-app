@@ -264,6 +264,28 @@
                     </div>
                 </div>
 
+                {{-- NEW: SPOUSE SELECTION --}}
+                <div class="input-group">
+                    <label>SPOUSE (OPTIONAL)</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="spouse_none" name="spouse_type" value="none"
+                                {{ old('spouse_type', 'none') == 'none' ? 'checked' : '' }}>
+                            <label for="spouse_none">None</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="spouse_husband" name="spouse_type" value="husband"
+                                {{ old('spouse_type') == 'husband' ? 'checked' : '' }}>
+                            <label for="spouse_husband">Husband</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="spouse_wife" name="spouse_type" value="wife"
+                                {{ old('spouse_type') == 'wife' ? 'checked' : '' }}>
+                            <label for="spouse_wife">Wife</label>
+                        </div>
+                    </div>
+                </div>
+
                 {{-- 4. MEMBER TYPE --}}
                 <div class="input-group">
                     <label>MEMBER TYPE</label>
@@ -299,11 +321,12 @@
                     </select>
                 </div>
 
-                {{-- 6. HOW MANY GUEST --}}
+                {{-- 6. HOW MANY CHILDREN --}}
                 <div class="input-group">
-                    <label for="number_of_guests">HOW MANY GUEST</label>
-                    <input type="number" id="number_of_guests" name="number_of_guests"
-                        value="{{ old('number_of_guests', 0) }}" min="0" required>
+                    <label for="number_of_children">HOW MANY CHILDREN</label>
+                    <input type="number" id="number_of_children" name="number_of_children"
+                        value="{{ old('number_of_children', 0) }}" min="0" placeholder="Number of children"
+                        required>
                 </div>
 
                 {{-- 7. PAYMENT GETWAY --}}
@@ -319,6 +342,11 @@
                             <input type="radio" id="pay_nagad" name="payment_method" value="Nagad"
                                 {{ old('payment_method') == 'Nagad' ? 'checked' : '' }}>
                             <label for="pay_nagad">Nagad</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="pay_bank" name="payment_method" value="Bank"
+                                {{ old('payment_method') == 'Bank' ? 'checked' : '' }}>
+                            <label for="pay_bank">Bank Details</label>
                         </div>
                     </div>
                 </div>

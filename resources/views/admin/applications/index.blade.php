@@ -399,7 +399,8 @@
                             <th>Phone</th>
                             <th>Type</th>
                             <th>Year</th>
-                            <th>Guests</th>
+                            <th>Spouse</th>
+                            <th>Children</th>
                             <th>Payment</th>
                             <th>Amount</th>
                             <th>Status</th>
@@ -416,7 +417,8 @@
                                 <td>{{ $app->phone }}</td>
                                 <td>{{ ucfirst(str_replace('_', ' ', $app->member_type)) }}</td>
                                 <td>{{ $app->graduation_year }}</td>
-                                <td>{{ $app->number_of_guests }}</td>
+                                <td>{{ $app->spouse_type ? ucfirst($app->spouse_type) : 'None' }}</td>
+                                <td>{{ $app->number_of_children }}</td>
                                 <td>{{ $app->payment_method }}</td>
                                 <td style="font-weight: 600;">{{ $app->donation_amount }} BDT</td>
                                 <td>
