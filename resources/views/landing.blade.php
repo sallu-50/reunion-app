@@ -209,7 +209,8 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             border: 1px solid rgba(99, 102, 241, 0.3);
-            margin-bottom: 24px;
+            margin-top: 5px;
+            margin-bottom: 5px;
         }
 
         .cta-wrapper {
@@ -310,8 +311,8 @@
             .hero-badge {
                 font-size: 0.9rem;
                 padding: 6px 16px;
-                margin-bottom: 2px;
-                margin-top: 2px;
+                margin-bottom: 1px;
+                margin-top: 1px;
             }
 
             .cta-wrapper {
@@ -363,7 +364,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <p style="margin-bottom: 20px; color: #e2e8f0;">মেদিলা আদর্শ উচ্চ বিদ্যালয়-এর অবসর প্রাপ্ত শিক্ষক-শিক্ষিকা
+            <p style="margin-bottom: 5px; color: #e2e8f0;">মেদিলা আদর্শ উচ্চ বিদ্যালয়-এর অবসর প্রাপ্ত শিক্ষক-শিক্ষিকা
                 বৃন্দের বিদায়
                 সম্বর্ধনা</p>
             <span class="hero-badge">৪০ বছর পূর্তি উপলক্ষে</span>
