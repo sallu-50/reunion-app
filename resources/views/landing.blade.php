@@ -272,12 +272,11 @@
             }
 
             .announcement-bar {
-                top: 110px;
-                /* Adjust for stacked navbar height */
+                top: 90px;
             }
 
             .hero-content {
-                margin-top: 150px;
+                margin-top: 60px;
             }
 
             .nav-stats {
