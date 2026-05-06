@@ -285,7 +285,7 @@
 
 
 
-                {{-- 4. MEMBER TYPE --}}
+                {{-- MEMBER TYPE --}}
                 <div class="input-group">
                     <label>ছাত্র/ছাত্রীর ধরন (রেজিষ্ট্রেশন ফি ১০২০ টাকা)</label>
                     <div class="radio-group">
@@ -307,14 +307,14 @@
                     </div>
                 </div>
 
-                {{-- 5. PASSING YEAR --}}
-                <div class="input-group">
+                {{-- PASSING YEAR --}}
+                <div class="input-group" id="graduation_year_group">
                     <label for="graduation_year">পাশের সাল</label>
-                    <select id="graduation_year" name="graduation_year" required>
-                        <option value="" disabled {{ old('graduation_year') ? '' : 'selected' }}>পাশের বছর
-                            নির্বাচন করুন
+                    <select id="graduation_year" name="graduation_year">
+                        <option value="" disabled {{ old('graduation_year') ? '' : 'selected' }}>
+                            পাশের বছর নির্বাচন করুন
                         </option>
-                        @for ($year = 2025; $year >= 1995; $year--)
+                        @for ($year = 2025; $year >= 1985; $year--)
                             <option value="{{ $year }}"
                                 {{ old('graduation_year') == $year ? 'selected' : '' }}>
                                 {{ $year }}
@@ -434,6 +434,26 @@
     </div>
 
     <script>
+        function toggleGraduationYear() {
+            const memberType = document.querySelector('input[name="member_type"]:checked');
+            const yearGroup = document.getElementById('graduation_year_group');
+            const yearSelect = document.getElementById('graduation_year');
+
+            if (memberType && memberType.value === 'guest') {
+                yearGroup.style.display = 'none';
+                yearSelect.value = '';
+            } else {
+                yearGroup.style.display = 'block';
+            }
+        }
+
+        // event listener
+        document.querySelectorAll('input[name="member_type"]').forEach(input => {
+            input.addEventListener('change', toggleGraduationYear);
+        });
+
+        // page load এ run
+        toggleGraduationYear();
         const paymentInfo = document.getElementById('payment_info');
         const paymentNumber = document.getElementById('payment_number');
 
