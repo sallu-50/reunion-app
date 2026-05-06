@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-            $table->integer('graduation_year');
+            $table->integer('graduation_year')->nullable();
             $table->text('message')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
