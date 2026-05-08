@@ -56,3 +56,18 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Database CSV dump command
+
+This project includes an Artisan command to export the SQLite database tables to CSV files.
+
+- Command: `php artisan db:dump-csv`
+- Options:
+    - `--path=` Directory under `storage/app` to write files to (default: `db-dumps`). Note: this app's local disk uses `storage/app/private` as its root, so the final path will usually be `storage/app/private/{path}`.
+    - `--table=` Optional single table name to export just that table.
+
+Example:
+
+php artisan db:dump-csv --path=my-dump
+
+This writes CSV files for each table into `storage/app/private/my-dump` by default.
