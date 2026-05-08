@@ -11,7 +11,8 @@ return new class extends Migration {
         Schema::create('reunion_applications_temp', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            // allow nullable email here so copying existing rows won't fail
+            $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->integer('graduation_year')->nullable(); // ✅ FIXED
             $table->text('message')->nullable();
