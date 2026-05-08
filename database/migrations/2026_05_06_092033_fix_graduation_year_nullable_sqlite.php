@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 return new class extends Migration {
     public function up(): void
     {
+        // Ensure any leftover temp table is removed (helps if migration partially ran before)
+        if (Schema::hasTable('reunion_applications_temp')) {
+            Schema::dropIfExists('reunion_applications_temp');
+        }
+
         // নতুন table (correct schema)
         Schema::create('reunion_applications_temp', function (Blueprint $table) {
             $table->id();
