@@ -547,22 +547,55 @@
                                             <form action="{{ route('admin.applications.approve', $app->id) }}"
                                                 method="POST" style="margin:0;">
                                                 @csrf
+                                                @if (request()->has('year'))
+                                                    <input type="hidden" name="year"
+                                                        value="{{ request('year') }}">
+                                                @endif
+                                                @if (request()->has('status'))
+                                                    <input type="hidden" name="status"
+                                                        value="{{ request('status') }}">
+                                                @endif
                                                 <button type="submit" class="btn btn-approve">Approve</button>
                                             </form>
                                             <form action="{{ route('admin.applications.reject', $app->id) }}"
                                                 method="POST" style="margin:0;">
                                                 @csrf
+                                                @if (request()->has('year'))
+                                                    <input type="hidden" name="year"
+                                                        value="{{ request('year') }}">
+                                                @endif
+                                                @if (request()->has('status'))
+                                                    <input type="hidden" name="status"
+                                                        value="{{ request('status') }}">
+                                                @endif
                                                 <button type="submit" class="btn btn-reject">Reject</button>
                                             </form>
                                         @endif
                                         @if (auth()->user()->role === 'super_admin')
-                                            <a href="{{ route('admin.applications.edit', $app->id) }}"
+                                            @php
+                                                $qs = [];
+                                                if (request()->has('year')) {
+                                                    $qs['year'] = request('year');
+                                                }
+                                                if (request()->has('status')) {
+                                                    $qs['status'] = request('status');
+                                                }
+                                            @endphp
+                                            <a href="{{ route('admin.applications.edit', array_merge([$app->id], $qs)) }}"
                                                 class="btn btn-view" style="background: #eef2ff;">Edit</a>
                                             <form action="{{ route('admin.applications.destroy', $app->id) }}"
                                                 method="POST" style="margin:0;"
                                                 onsubmit="return confirm('Are you sure you want to delete this application?')">
                                                 @csrf
                                                 @method('DELETE')
+                                                @if (request()->has('year'))
+                                                    <input type="hidden" name="year"
+                                                        value="{{ request('year') }}">
+                                                @endif
+                                                @if (request()->has('status'))
+                                                    <input type="hidden" name="status"
+                                                        value="{{ request('status') }}">
+                                                @endif
                                                 <button type="submit" class="btn btn-reject"
                                                     style="background: #ef4444;">Delete</button>
                                             </form>

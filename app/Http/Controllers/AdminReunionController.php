@@ -33,27 +33,32 @@ class AdminReunionController extends Controller
         ));
     }
 
-    public function approve(ReunionApplication $application)
+    public function approve(Request $request, ReunionApplication $application)
     {
         $application->status = 'approved';
         $application->save();
-        return redirect()->route('admin.applications.index')->with('success', 'Application approved successfully!');
+
+        $query = $request->only(['year', 'status']);
+        return redirect()->route('admin.applications.index', $query)->with('success', 'Application approved successfully!');
     }
 
-    public function reject(ReunionApplication $application)
+    public function reject(Request $request, ReunionApplication $application)
     {
         $application->status = 'rejected';
         $application->save();
-        return redirect()->route('admin.applications.index')->with('success', 'Application rejected successfully!');
+
+        $query = $request->only(['year', 'status']);
+        return redirect()->route('admin.applications.index', $query)->with('success', 'Application rejected successfully!');
     }
 
-    public function destroy(ReunionApplication $application)
+    public function destroy(Request $request, ReunionApplication $application)
     {
         if (auth()->user()->role !== 'super_admin') {
             abort(403);
         }
         $application->delete();
-        return redirect()->route('admin.applications.index')->with('success', 'Application deleted successfully!');
+        $query = $request->only(['year', 'status']);
+        return redirect()->route('admin.applications.index', $query)->with('success', 'Application deleted successfully!');
     }
 
     public function edit(ReunionApplication $application)
