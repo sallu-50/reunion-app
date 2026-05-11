@@ -55,4 +55,40 @@ class AdminReunionController extends Controller
         $application->delete();
         return redirect()->route('admin.applications.index')->with('success', 'Application deleted successfully!');
     }
+
+    public function edit(ReunionApplication $application)
+    {
+        if (auth()->user()->role !== 'super_admin') {
+            abort(403);
+        }
+
+        return view('admin.applications.edit', compact('application'));
+    }
+
+    public function update(Request $request, ReunionApplication $application)
+    {
+        if (auth()->user()->role !== 'super_admin') {
+            abort(403);
+        }
+
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'phone' => 'nullable|string|max:50',
+            'gender' => 'nullable|in:male,female,other',
+            'spouse_type' => 'nullable|in:husband,wife,none',
+            'member_type' => 'nullable|in:guest,ex_student,running_student',
+            'tshirt_size' => 'nullable|string|max:10',
+            'number_of_children' => 'nullable|integer|min:0',
+            'payment_method' => 'nullable|string|max:50',
+            'donation_amount' => 'nullable|integer|min:0',
+            'transaction_number' => 'nullable|string|max:255',
+            'message' => 'nullable|string',
+            'graduation_year' => 'nullable|integer|min:1900|max:' . date('Y'),
+        ]);
+
+        $application->update($data);
+
+        return redirect()->route('admin.applications.index')->with('success', 'Application updated successfully!');
+    }
 }

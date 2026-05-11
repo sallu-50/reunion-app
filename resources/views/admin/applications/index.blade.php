@@ -204,9 +204,20 @@
             font-weight: 600;
         }
 
-        .status-pending { background: #fef3c7; color: #92400e; }
-        .status-approved { background: #dcfce7; color: #166534; }
-        .status-rejected { background: #fee2e2; color: #991b1b; }
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-approved {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
 
         .btn {
             padding: 8px 16px;
@@ -222,12 +233,32 @@
             gap: 6px;
         }
 
-        .btn-view { background: #f1f5f9; color: #475569; }
-        .btn-view:hover { background: #e2e8f0; }
-        .btn-approve { background: var(--success); color: white; }
-        .btn-approve:hover { opacity: 0.9; }
-        .btn-reject { background: var(--error); color: white; }
-        .btn-reject:hover { opacity: 0.9; }
+        .btn-view {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .btn-view:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-approve {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-approve:hover {
+            opacity: 0.9;
+        }
+
+        .btn-reject {
+            background: var(--error);
+            color: white;
+        }
+
+        .btn-reject:hover {
+            opacity: 0.9;
+        }
 
         /* Modal Styles */
         .modal {
@@ -354,7 +385,8 @@
             margin-top: 20px;
         }
 
-        .media-preview img, .media-preview video {
+        .media-preview img,
+        .media-preview video {
             max-width: 100%;
             border-radius: 12px;
             border: 1px solid #e2e8f0;
@@ -367,13 +399,19 @@
         <div class="header">
             <div>
                 <h1>Admin Dashboard</h1>
-                <p style="margin: 5px 0 0; color: #64748b; font-size: 0.9rem;">Welcome back, {{ auth()->user()->name }}</p>
+                <p style="margin: 5px 0 0; color: #64748b; font-size: 0.9rem;">Welcome back, {{ auth()->user()->name }}
+                </p>
             </div>
             <div>
                 <form action="{{ route('logout') }}" method="POST" style="margin: 0;">
                     @csrf
                     <button type="submit" class="btn btn-logout">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
                         Logout
                     </button>
                 </form>
@@ -383,7 +421,13 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon" style="background: rgba(99, 102, 241, 0.1); color: var(--primary);">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
                 </div>
                 <div class="stat-info">
                     <h3>Total Apply</h3>
@@ -392,7 +436,11 @@
             </div>
             <div class="stat-card">
                 <div class="stat-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
                 </div>
                 <div class="stat-info">
                     <h3>Approved</h3>
@@ -401,11 +449,17 @@
             </div>
             <div class="stat-card">
                 <div class="stat-icon" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
                 </div>
                 <div class="stat-info">
                     <h3>Pending</h3>
-                    <p>{{ $totalApplications - $approvedApplications - $applications->where('status', 'rejected')->count() }}</p>
+                    <p>{{ $totalApplications - $approvedApplications - $applications->where('status', 'rejected')->count() }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -415,8 +469,9 @@
                 <label for="year">Passing Year:</label>
                 <select name="year" id="year">
                     <option value="">All Years</option>
-                    @foreach($years as $year)
-                        <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>{{ $year }}</option>
+                    @foreach ($years as $year)
+                        <option value="{{ $year }}" {{ request('year') == $year ? 'selected' : '' }}>
+                            {{ $year }}</option>
                     @endforeach
                 </select>
             </div>
@@ -430,13 +485,14 @@
                 </select>
             </div>
             <button type="submit" class="btn-filter">Filter</button>
-            @if(request()->has('year') || request()->has('status'))
+            @if (request()->has('year') || request()->has('status'))
                 <a href="{{ route('admin.applications.index') }}" class="btn-reset">Reset</a>
             @endif
         </form>
 
         @if (session('success'))
-            <div style="background: var(--success); color: white; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
+            <div
+                style="background: var(--success); color: white; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
                 {{ session('success') }}
             </div>
         @endif
@@ -470,7 +526,9 @@
                                 <td>{{ $app->phone }}</td>
                                 <td>{{ ucfirst(str_replace('_', ' ', $app->member_type)) }}</td>
                                 <td>{{ $app->graduation_year }}</td>
-                                <td><span class="badge" style="background: #f1f5f9; color: #475569;">{{ $app->tshirt_size }}</span></td>
+                                <td><span class="badge"
+                                        style="background: #f1f5f9; color: #475569;">{{ $app->tshirt_size }}</span>
+                                </td>
                                 <td>{{ $app->spouse_type ? ucfirst($app->spouse_type) : 'None' }}</td>
                                 <td>{{ $app->number_of_children }}</td>
                                 <td>{{ $app->payment_method }}</td>
@@ -482,23 +540,31 @@
                                 </td>
                                 <td>
                                     <div style="display: flex; gap: 8px;">
-                                        <button class="btn btn-view" onclick="showDetails({{ json_encode($app) }})">View</button>
-                                        
-                                        @if(auth()->user()->role !== 'viewer' && $app->status == 'pending')
-                                            <form action="{{ route('admin.applications.approve', $app->id) }}" method="POST" style="margin:0;">
+                                        <button class="btn btn-view"
+                                            onclick="showDetails({{ json_encode($app) }})">View</button>
+
+                                        @if (auth()->user()->role !== 'viewer' && $app->status == 'pending')
+                                            <form action="{{ route('admin.applications.approve', $app->id) }}"
+                                                method="POST" style="margin:0;">
                                                 @csrf
                                                 <button type="submit" class="btn btn-approve">Approve</button>
                                             </form>
-                                            <form action="{{ route('admin.applications.reject', $app->id) }}" method="POST" style="margin:0;">
+                                            <form action="{{ route('admin.applications.reject', $app->id) }}"
+                                                method="POST" style="margin:0;">
                                                 @csrf
                                                 <button type="submit" class="btn btn-reject">Reject</button>
                                             </form>
                                         @endif
-                                        @if(auth()->user()->role === 'super_admin')
-                                            <form action="{{ route('admin.applications.destroy', $app->id) }}" method="POST" style="margin:0;" onsubmit="return confirm('Are you sure you want to delete this application?')">
+                                        @if (auth()->user()->role === 'super_admin')
+                                            <a href="{{ route('admin.applications.edit', $app->id) }}"
+                                                class="btn btn-view" style="background: #eef2ff;">Edit</a>
+                                            <form action="{{ route('admin.applications.destroy', $app->id) }}"
+                                                method="POST" style="margin:0;"
+                                                onsubmit="return confirm('Are you sure you want to delete this application?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-reject" style="background: #ef4444;">Delete</button>
+                                                <button type="submit" class="btn btn-reject"
+                                                    style="background: #ef4444;">Delete</button>
                                             </form>
                                         @endif
                                     </div>
@@ -506,7 +572,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="10" style="text-align: center; padding: 40px; color: #64748b;">No applications found.</td>
+                                <td colspan="10" style="text-align: center; padding: 40px; color: #64748b;">No
+                                    applications found.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -522,7 +589,7 @@
                 <h2 id="modalName" style="margin:0;">Application Details</h2>
                 <span class="close-btn" onclick="closeModal()">&times;</span>
             </div>
-            
+
             <div class="details-grid" id="modalBody">
                 <!-- Content injected by JS -->
             </div>
@@ -541,7 +608,7 @@
 
         function showDetails(app) {
             modalName.textContent = `Details for ${app.name}`;
-            
+
             let html = `
                 <div class="detail-item">
                     <div class="detail-label">Member Type</div>
@@ -600,15 +667,16 @@
                     <div class="detail-value">${app.message || 'N/A'}</div>
                 </div>
             `;
-            
+
             modalBody.innerHTML = html;
 
             let mediaHtml = '';
-            if(app.photo) {
+            if (app.photo) {
                 mediaHtml += `<div><div class="detail-label">Photo</div><img src="/storage/${app.photo}"></div>`;
             }
-            if(app.video) {
-                mediaHtml += `<div><div class="detail-label">Video</div><video controls src="/storage/${app.video}"></video></div>`;
+            if (app.video) {
+                mediaHtml +=
+                    `<div><div class="detail-label">Video</div><video controls src="/storage/${app.video}"></video></div>`;
             }
             modalMedia.innerHTML = mediaHtml;
 

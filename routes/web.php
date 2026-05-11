@@ -55,6 +55,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::delete('applications/{application}', [AdminReunionController::class, 'destroy'])
         ->middleware('role:super_admin')
         ->name('applications.destroy');
+    
+    Route::get('applications/{application}/edit', [AdminReunionController::class, 'edit'])
+        ->middleware('role:super_admin')
+        ->name('applications.edit');
+
+    Route::put('applications/{application}', [AdminReunionController::class, 'update'])
+        ->middleware('role:super_admin')
+        ->name('applications.update');
 });
 
 Auth::routes();
