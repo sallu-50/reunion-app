@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ReunionApplication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Larament\Barta\Facades\Barta;
 
 class AdminReunionController extends Controller
 {
@@ -37,6 +39,14 @@ class AdminReunionController extends Controller
     {
         $application->status = 'approved';
         $application->save();
+
+        try {
+            Barta::to($application->phone)
+                ->message("আপনার রেজিস্ট্রেশন অনুমোদিত হয়েছে। এখন আপনি লগইন করতে পারবেন। - Reunion")
+                ->send();
+        } catch (\Throwable $e) {
+            Log::error('SendApprovalSms: Barta send failed', ['error' => $e->getMessage(), 'user_id' => $this->userId]);
+        }
 
         $query = $request->only(['year', 'status']);
         return redirect()->route('admin.applications.index', $query)->with('success', 'Application approved successfully!');

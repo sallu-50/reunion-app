@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Jobs\SendApprovalSms;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Larament\Barta\Facades\Barta;
 
 class AdminUserController extends Controller
 {
@@ -16,9 +18,6 @@ class AdminUserController extends Controller
 
         $user->is_approved = true;
         $user->save();
-
-        // dispatch SMS job
-        SendApprovalSms::dispatch($user->id);
 
         $query = $request->only(['page']);
         return redirect()->route('admin.applications.index', $query)->with('success', 'User approved and SMS queued.');
