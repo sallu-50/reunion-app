@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\User;
 use App\Services\MimsmsService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -24,7 +25,13 @@ class SendApprovalSms implements ShouldQueue
     public function handle(MimsmsService $mimsms)
     {
         $user = User::find($this->userId);
-        if (! $user || ! $user->phone) {
+        if (! $user) {
+            Log::warning('SendApprovalSms: user not found', ['user_id' => $this->userId]);
+            return;
+        }
+
+        if (! $user->phone) {
+            Log::info('SendApprovalSms: user has no phone, skipping SMS', ['user_id' => $this->userId]);
             return;
         }
 

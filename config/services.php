@@ -39,6 +39,7 @@ return [
     'base_url' => env('MIMSMS_BASE_URL'),
     'key' => env('MIMSMS_API_KEY'),
     'sender' => env('MIMSMS_SENDER_ID'),
+    'endpoint' => env('MIMSMS_ENDPOINT', '/api/v1/sms/send'),
 ],
 
 ];
