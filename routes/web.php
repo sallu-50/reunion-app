@@ -63,6 +63,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::put('applications/{application}', [AdminReunionController::class, 'update'])
         ->middleware('role:super_admin')
         ->name('applications.update');
+
+    // User management - approve user (super_admin)
+    Route::post('users/{user}/approve', [\App\Http\Controllers\AdminUserController::class, 'approve'])
+        ->middleware('role:super_admin')
+        ->name('users.approve');
 });
 
 Auth::routes();

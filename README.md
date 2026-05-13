@@ -71,3 +71,32 @@ Example:
 php artisan db:dump-csv --path=my-dump
 
 This writes CSV files for each table into `storage/app/private/my-dump` by default.
+
+## Registration + Admin approval + SMS (MIMSMS)
+
+This project supports a flow where users register with a phone number and an admin approves them. On approval an SMS is sent via MIMSMS.
+
+Environment variables required:
+
+- `MIMSMS_API_URL` - MIMSMS HTTP endpoint
+- `MIMSMS_API_KEY` - API key for authorization
+- `MIMSMS_SENDER_ID` - Sender id shown on SMS
+
+How it works:
+
+1. Users register via the standard register form (now includes `phone`). Users are created with `is_approved=false`.
+2. A super admin approves a user via the admin UI. That action sets `is_approved=true` and dispatches a background job to send an SMS.
+3. The SMS job calls MIMSMS via `App\Services\MimsmsService`.
+
+Quick test:
+
+1. Set the env keys in `.env`.
+2. Run migrations:
+
+php artisan migrate
+
+3. Seed admin users if needed:
+
+php artisan db:seed --class=AdminUserSeeder
+
+4. Register a new user (include phone), login as superadmin, approve the user and inspect logs/queue to ensure SMS is queued/sent.
