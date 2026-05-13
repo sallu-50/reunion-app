@@ -21,7 +21,11 @@ return [
             'api_token' => env('BARTA_ESMS_TOKEN'),
             'sender_id' => env('BARTA_ESMS_SENDER_ID'),
         ],
-        // 'mimsms' driver configuration removed - using larament/barta package defaults & env
+        'mimsms' => [
+            'username' => env('BARTA_MIMSMS_USERNAME'),
+            'api_key' => env('BARTA_MIMSMS_API_KEY'),
+            'sender_id' => env('BARTA_MIMSMS_SENDER_ID'),
+        ],
         'ssl' => [
             'api_token' => env('BARTA_SSL_TOKEN'),
             'sender_id' => env('BARTA_SSL_SENDER_ID'),
