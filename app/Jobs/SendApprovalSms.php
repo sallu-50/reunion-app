@@ -38,7 +38,9 @@ class SendApprovalSms implements ShouldQueue
         $message = "আপনার রেজিস্ট্রেশন অনুমোদিত হয়েছে। এখন আপনি লগইন করতে পারবেন। - Reunion";
 
         try {
-            Barta::send($user->phone, $message);
+            Barta::to($user->phone)
+                ->message($message)
+                ->send();
         } catch (\Throwable $e) {
             Log::error('SendApprovalSms: Barta send failed', ['error' => $e->getMessage(), 'user_id' => $this->userId]);
         }
