@@ -72,25 +72,23 @@ php artisan db:dump-csv --path=my-dump
 
 This writes CSV files for each table into `storage/app/private/my-dump` by default.
 
-## Registration + Admin approval + SMS (MIMSMS)
+## Registration + Admin approval + SMS
 
-This project supports a flow where users register with a phone number and an admin approves them. On approval an SMS is sent via MIMSMS.
+This project supports a flow where users register with a phone number and an admin approves them. On approval an SMS is sent using the Larament/Barta package.
 
-Environment variables required:
+Environment variables:
 
-- `MIMSMS_API_URL` - MIMSMS HTTP endpoint
-- `MIMSMS_API_KEY` - API key for authorization
-- `MIMSMS_SENDER_ID` - Sender id shown on SMS
+- `BARTA_DRIVER` - which SMS driver to use (e.g. `log`, `mimsms`, or other drivers supported by Larament/Barta). Configure driver-specific keys as documented by Larament/Barta.
 
 How it works:
 
 1. Users register via the standard register form (now includes `phone`). Users are created with `is_approved=false`.
 2. A super admin approves a user via the admin UI. That action sets `is_approved=true` and dispatches a background job to send an SMS.
-3. The SMS job calls MIMSMS via `App\Services\MimsmsService`.
+3. The SMS job uses the Larament/Barta facade to send the message (see `app/Jobs/SendApprovalSms.php`).
 
 Quick test:
 
-1. Set the env keys in `.env`.
+1. Configure `BARTA_DRIVER` and driver-specific env keys in `.env` according to the Larament/Barta docs: https://barta.larament.com/
 2. Run migrations:
 
 php artisan migrate

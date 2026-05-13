@@ -3,8 +3,8 @@
 namespace App\Jobs;
 
 use App\Models\User;
-use App\Services\MimsmsService;
 use Illuminate\Support\Facades\Log;
+use Larament\Barta\Facades\Barta;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -22,7 +22,7 @@ class SendApprovalSms implements ShouldQueue
         $this->userId = $userId;
     }
 
-    public function handle(MimsmsService $mimsms)
+    public function handle()
     {
         $user = User::find($this->userId);
         if (! $user) {
@@ -36,6 +36,11 @@ class SendApprovalSms implements ShouldQueue
         }
 
         $message = "আপনার রেজিস্ট্রেশন অনুমোদিত হয়েছে। এখন আপনি লগইন করতে পারবেন। - Reunion";
-        $mimsms->send($user->phone, $message);
+
+        try {
+            Barta::send($user->phone, $message);
+        } catch (\Throwable $e) {
+            Log::error('SendApprovalSms: Barta send failed', ['error' => $e->getMessage(), 'user_id' => $this->userId]);
+        }
     }
 }
